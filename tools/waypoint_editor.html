@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Origincar Waypoint Editor — 路径点可视化与曲率优化工具</title>
+<script src="default_yaml.js"></script>
+<script>
+// If YAML can't be fetched, fall back to embedded data
+let defaultYamlLoaded = false;
+
+function tryLoadEmbeddedYaml() {
+  if (!defaultYamlLoaded && typeof getDefaultYaml === 'function') {
+    try {
+      loadYamlText(getDefaultYaml());
+      defaultYamlLoaded = true;
+    } catch(e) {
+      console.error('Failed to load embedded YAML:', e);
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',system-ui,sans-serif; background:#0f1923; color:#d0d8e0; height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+header { background:#1a2733; padding:8px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #2a3a4a; }
+header h1 { font-size:16px; font-weight:600; color:#e8eff5; white-space:nowrap; }
+.badge { font-size:11px; background:#1e3a5f; color:#7eb8da; padding:2px 8px; border-radius:10px; }
+.toolbar { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-left:auto; }
+.btn { background:#1e3a5f; color:#c8d8e8; border:1px solid #2a4a6a; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; white-space:nowrap; transition:all 0.15s; }
+.btn:hover { background:#2a4f7a; border-color:#3a6090; }
+.btn.accent { background:#0d6b4a; border-color:#1a8a62; color:#b0f0d0; }
+.btn.accent:hover { background:#108058; }
+.btn.warn { background:#6b3a0d; border-color:#8a4f1a; color:#f0c8a0; }
+.btn.warn:hover { background:#805215; }
+.main-layout { display:flex; flex:1; overflow:hidden; }
+.panel { background:#111e2b; border-right:1px solid #2a3a4a; display:flex; flex-direction:column; overflow:hidden; }
+.panel.left { width:320px; min-width:280px; }
+.panel.right { width:360px; min-width:300px; border-right:none; border-left:1px solid #2a3a4a; }
+.panel-header { padding:10px 12px; background:#162433; border-bottom:1px solid #2a3a4a; font-size:13px; font-weight:600; color:#a0b8d0; text-transform:uppercase; letter-spacing:0.5px; }
+.canvas-wrap { flex:1; position:relative; background:#0a141f; overflow:hidden; cursor:grab; }
+.canvas-wrap:active { cursor:grabbing; }
+canvas { display:block; }
+.stats { padding:8px 12px; font-size:11px; color:#6080a0; border-top:1px solid #2a3a4a; background:#162433; }
+.stats span { margin-right:16px; }
+.route-list { flex:1; overflow-y:auto; padding:4px; }
+.route-item { padding:8px 12px; margin:2px 4px; border-radius:5px; cursor:pointer; font-size:12px; border:1px solid transparent; transition:all 0.12s; display:flex; justify-content:space-between; align-items:center; }
+.route-item:hover { background:#1a2d3d; border-color:#2a4a6a; }
+.route-item.active { background:#1a3348; border-color:#3a70a0; }
+.route-item .name { font-weight:500; color:#c8dce8; }
+.route-item .info { font-size:10px; color:#6088a8; }
+.issue-list { flex:1; overflow-y:auto; padding:4px; }
+.issue-item { padding:10px 12px; margin:3px 4px; border-radius:5px; font-size:12px; cursor:pointer; border-left:3px solid; transition:all 0.12s; }
+.issue-item.critical { border-left-color:#e06040; background:#1e1818; }
+.issue-item.warning { border-left-color:#e0a040; background:#1e1c18; }
+.issue-item:hover { opacity:0.85; }
+.issue-item .loc { font-weight:600; color:#e0c8b0; }
+.issue-item .detail { font-size:11px; color:#a0b0c0; margin-top:2px; }
+.tool-panel { padding:12px; overflow-y:auto; flex:1; }
+.tool-panel label { font-size:11px; color:#8098b0; display:block; margin:8px 0 3px; text-transform:uppercase; letter-spacing:0.4px; }
+.tool-panel input[type=range] { width:100%; accent-color:#3a80b0; }
+.tool-panel input[type=number] { width:100%; background:#0f1f2f; border:1px solid #2a4a6a; color:#d0dce8; padding:6px 10px; border-radius:4px; font-size:13px; }
+.tool-panel .range-val { font-size:11px; color:#80a0c0; float:right; }
+.status-bar { background:#1a2733; border-top:1px solid #2a3a4a; padding:5px 16px; font-size:11px; color:#6088a8; display:flex; gap:20px; }
+.export-area { width:100%; min-height:200px; background:#0a141f; border:1px solid #2a4a6a; color:#b0c8d8; font-family:'Cascadia Code',Consolas,monospace; font-size:11px; padding:10px; border-radius:4px; resize:vertical; }
+.context-tag { display:inline-block; font-size:10px; padding:1px 6px; border-radius:3px; margin-right:4px; }
+.context-tag.danger { background:#401010; color:#e06040; }
+.context-tag.warn { background:#403010; color:#e0a040; }
+.check-row { display:flex; align-items:center; gap:8px; margin:6px 0; font-size:12px; }
+.check-row input[type=checkbox] { accent-color:#3a80b0; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧭 Origincar Waypoint Editor</h1>
+  <span class="badge">曲率分析 + 智能平滑</span>
+  <div class="toolbar">
+    <button class="btn" onclick="loadYamlFromFile()" title="从本地文件加载 YAML">📂 加载 YAML</button>
+    <button class="btn" onclick="pasteYamlPrompt()">📋 粘贴 YAML</button>
+    <button class="btn accent" onclick="autoSmoothAll()">✨ 自动平滑</button>
+    <button class="btn accent" onclick="computeAll()">🔄 重新分析</button>
+    <button class="btn" onclick="showExport()">💾 导出 YAML</button>
+    <button class="btn" onclick="downloadFixedYaml()">⬇️ 下载</button>
+    <span style="color:#6088a0;font-size:11px;margin-left:8px;">滚轮缩放 | 拖拽平移 | 点击选点</span>
+  </div>
+</header>
+
+<div class="main-layout">
+  <!-- Left Panel: Route List -->
+  <div class="panel left">
+    <div class="panel-header">📍 路径列表</div>
+    <div class="route-list" id="routeList"></div>
+    <div class="stats" id="routeStats">选择一条路径查看详情</div>
+  </div>
+
+  <!-- Center: Canvas -->
+  <div class="canvas-wrap" id="canvasWrap">
+    <canvas id="mainCanvas"></canvas>
+  </div>
+
+  <!-- Right Panel: Issues + Tools -->
+  <div class="panel right">
+    <div class="panel-header">⚠️ 曲率问题点</div>
+    <div class="issue-list" id="issueList">
+      <div style="padding:16px;color:#6080a0;font-size:12px;">点击路径列表中的路径进行分析</div>
+    </div>
+    <div class="tool-panel" style="border-top:1px solid #2a3a4a;">
+      <div class="panel-header" style="margin:-12px -12px 8px;">🔧 平滑参数</div>
+      <label>方向突变阈值 (°)</label>
+      <input type="range" id="angleThreshold" min="5" max="60" value="20" oninput="document.getElementById('angleThVal').textContent=this.value+'°'; debounceRecompute()">
+      <span class="range-val" id="angleThVal">20°</span>
+
+      <label>最小转弯半径 (m)</label>
+      <input type="range" id="radiusThreshold" min="0.05" max="1.0" step="0.05" value="0.20" oninput="document.getElementById('radThVal').textContent=this.value+' m'; debounceRecompute()">
+      <span class="range-val" id="radThVal">0.20 m</span>
+
+      <label>平滑插值间距 (m)</label>
+      <input type="range" id="smoothSpacing" min="0.01" max="0.15" step="0.005" value="0.03" oninput="document.getElementById('spVal').textContent=this.value+' m'">
+      <span class="range-val" id="spVal">0.03 m</span>
+
+      <label>平滑窗口 (前后点数)</label>
+      <input type="range" id="smoothWindow" min="2" max="15" value="6" oninput="document.getElementById('swVal').textContent=this.value">
+      <span class="range-val" id="swVal">6</span>
+
+      <label>问题区域扩展 (前后点)</label>
+      <input type="range" id="expandRange" min="1" max="8" value="3" oninput="document.getElementById('erVal').textContent=this.value">
+      <span class="range-val" id="erVal">3</span>
+
+      <div class="check-row" style="margin-top:12px;">
+        <input type="checkbox" id="showCurvature" checked onchange="redraw()">
+        <label style="margin:0;color:#c0d0e0;">显示曲率热力图</label>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="showYaw" checked onchange="redraw()">
+        <label style="margin:0;color:#c0d0e0;">显示朝向箭头</label>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="showLabels" onchange="redraw()">
+        <label style="margin:0;color:#c0d0e0;">显示点索引标签</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span id="statusFile">未加载文件</span>
+  <span id="statusRoute"></span>
+  <span id="statusIssues"></span>
+  <span id="statusHover"></span>
+</div>
+
+<!-- Export Modal (inline panel) -->
+<div id="exportPanel" style="display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,0.7); z-index:100; justify-content:center;align-items:center;">
+<div style="background:#14202e; border:1px solid #2a4a6a; border-radius:10px; padding:20px; width:80%; max-width:900px; max-height:85vh; display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <h3 style="color:#d0dce8;">导出修正后的 YAML</h3>
+    <button class="btn" onclick="document.getElementById('exportPanel').style.display='none'">✕ 关闭</button>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:8px;">
+    <button class="btn accent" onclick="copyExport()">📋 复制到剪贴板</button>
+    <button class="btn accent" onclick="downloadFixedYaml()">⬇️ 下载 .yaml</button>
+    <button class="btn" onclick="document.getElementById('exportPanel').style.display='none'">取消</button>
+  </div>
+  <textarea class="export-area" id="exportText" style="flex:1;" readonly></textarea>
+</div>
+</div>
+
+<script>
+// ==================== GLOBAL STATE ====================
+let yamlData = null;
+let allRoutes = {};         // {name: [point, ...]}
+let activeRouteName = null;
+let activeRoutePoints = []; // current displayed
+let smoothedPoints = null;  // after auto-smooth
+let issues = [];
+
+// Canvas state
+let canvas, ctx;
+let viewX = 0, viewY = 0, viewScale = 100; // pixels per meter
+let dragging = false, dragStartX, dragStartY, dragViewX, dragViewY;
+
+// ==================== YAML LOADING ====================
+function loadYamlText(text) {
+  try {
+    yamlData = jsyaml.load(text);
+    allRoutes = {};
+    if (yamlData && yamlData.routes) {
+      for (const [name, pts] of Object.entries(yamlData.routes)) {
+        if (Array.isArray(pts) && pts.length > 0 && typeof pts[0].x === 'number') {
+          allRoutes[name] = pts;
+        }
+      }
+      // Also check for YAML anchors (shared refs)
+      // js-yaml resolves anchors, so if ring_cw is an alias it'll already be the same array
+    }
+    // Also scan waypoints section for point references
+    if (yamlData && yamlData.waypoints) {
+      // standalone waypoints like point_P, qr_point, etc
+    }
+    document.getElementById('statusFile').textContent = `已加载: ${Object.keys(allRoutes).length} 条路径`;
+    renderRouteList();
+    if (Object.keys(allRoutes).length > 0) {
+      selectRoute(Object.keys(allRoutes)[0]);
+    }
+  } catch(e) {
+    alert('YAML 解析失败: ' + e.message);
+  }
+}
+
+function loadYamlFromFile() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.yaml,.yml';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => loadYamlText(reader.result);
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function pasteYamlPrompt() {
+  const text = prompt('请粘贴 YAML 内容 (或输入文件路径):');
+  if (text) loadYamlText(text);
+}
+
+// Try to load default file on startup
+async function loadDefault() {
+  try {
+    const resp = await fetch('src/origincar_task/config/waypoints_flowpath_custom_rpp713.yaml');
+    if (resp.ok) {
+      const text = await resp.text();
+      loadYamlText(text);
+    }
+  } catch(e) {
+    // Not running as server, use embedded data
+    if (typeof DEFAULT_YAML !== 'undefined') {
+      loadYamlText(DEFAULT_YAML);
+    }
+  }
+}
+
+// ==================== ROUTE LIST UI ====================
+function renderRouteList() {
+  const container = document.getElementById('routeList');
+  container.innerHTML = '';
+  for (const [name, pts] of Object.entries(allRoutes)) {
+    const div = document.createElement('div');
+    div.className = 'route-item' + (name === activeRouteName ? ' active' : '');
+    const len = pathLength(pts);
+    div.innerHTML = `<span class="name">${name}</span><span class="info">${pts.length} 点 · ${len.toFixed(2)}m</span>`;
+    div.onclick = () => selectRoute(name);
+    container.appendChild(div);
+  }
+}
+
+function selectRoute(name) {
+  activeRouteName = name;
+  activeRoutePoints = allRoutes[name] || [];
+  smoothedPoints = null;
+  computeIssues();
+  renderRouteList();
+  fitView();
+  redraw();
+}
+
+// ==================== GEOMETRY UTILS ====================
+function pathLength(pts) {
+  let len = 0;
+  for (let i=1; i<pts.length; i++) {
+    len += Math.hypot(pts[i].x-pts[i-1].x, pts[i].y-pts[i-1].y);
+  }
+  return len;
+}
+
+function mengerRadius(p1, p2, p3) {
+  const a = Math.hypot(p2.x-p1.x, p2.y-p1.y);
+  const b = Math.hypot(p3.x-p2.x, p3.y-p2.y);
+  const c = Math.hypot(p3.x-p1.x, p3.y-p1.y);
+  const area = 0.5 * Math.abs(p1.x*(p2.y-p3.y) + p2.x*(p3.y-p1.y) + p3.x*(p1.y-p2.y));
+  if (area < 1e-12) return Infinity;
+  return (a*b*c) / (4*area);
+}
+
+function directionChange(p1, p2, p3) {
+  const a1 = Math.atan2(p2.y-p1.y, p2.x-p1.x);
+  const a2 = Math.atan2(p3.y-p2.y, p3.x-p2.x);
+  let d = a2 - a1;
+  while (d > Math.PI) d -= 2*Math.PI;
+  while (d < -Math.PI) d += 2*Math.PI;
+  return Math.abs(d);
+}
+
+// ==================== CURVATURE ANALYSIS ====================
+function computeIssues() {
+  issues = [];
+  if (activeRoutePoints.length < 3) return;
+  const pts = activeRoutePoints;
+  const angleTh = parseFloat(document.getElementById('angleThreshold').value);
+  const radiusTh = parseFloat(document.getElementById('radiusThreshold').value);
+
+  // Adaptive window: use wider spacing for radius estimation on dense paths
+  const spacing = pathLength(pts) / (pts.length - 1);
+  const radiusStep = Math.max(2, Math.ceil(0.08 / spacing)); // ~8cm window
+
+  for (let i = radiusStep * 2; i < pts.length - radiusStep * 2; i++) {
+    const delta = directionChange(pts[i-1], pts[i], pts[i+1]);
+    const deltaDeg = delta * 180 / Math.PI;
+
+    // Use wider-spaced points for stable radius
+    const radius = mengerRadius(pts[i - radiusStep], pts[i], pts[i + radiusStep]);
+
+    // Also check if it's a real curve (skip straight-line noise)
+    const isCurve = deltaDeg > 1.0;
+
+    if (deltaDeg > angleTh || (isCurve && radius < radiusTh)) {
+      issues.push({
+        index: i,
+        x: pts[i].x,
+        y: pts[i].y,
+        yaw: pts[i].yaw,
+        deltaDeg: deltaDeg,
+        radius: radius,
+        severity: (deltaDeg > 20 || radius < 0.2) ? 'critical' : 'warning'
+      });
+    }
+  }
+  renderIssues();
+  document.getElementById('statusIssues').textContent =
+    issues.length > 0 ? `${issues.length} 个曲率问题` : '✅ 曲率检查通过';
+}
+
+function renderIssues() {
+  const container = document.getElementById('issueList');
+  if (issues.length === 0) {
+    container.innerHTML = '<div style="padding:16px;color:#40a060;font-size:12px;">✅ 所有点位曲率正常</div>';
+    return;
+  }
+  container.innerHTML = '';
+  for (const iss of issues) {
+    const div = document.createElement('div');
+    div.className = 'issue-item ' + iss.severity;
+    const rText = iss.radius < Infinity ? iss.radius.toFixed(3)+'m' : '直线';
+    div.innerHTML = `<div class="loc">#${iss.index} (${iss.x.toFixed(3)}, ${iss.y.toFixed(3)})</div>
+      <div class="detail">方向突变 ${iss.deltaDeg.toFixed(1)}° | 半径 ${rText}</div>`;
+    div.onclick = () => { centerViewOn(iss.x, iss.y); redraw(); };
+    container.appendChild(div);
+  }
+}
+
+// ==================== SMOOTHING ====================
+function catmullRom(p0, p1, p2, p3, t) {
+  const t2 = t*t, t3 = t2*t;
+  const x = 0.5 * ((2*p1.x) + (-p0.x+p2.x)*t + (2*p0.x-5*p1.x+4*p2.x-p3.x)*t2 + (-p0.x+3*p1.x-3*p2.x+p3.x)*t3);
+  const y = 0.5 * ((2*p1.y) + (-p0.y+p2.y)*t + (2*p0.y-5*p1.y+4*p2.y-p3.y)*t2 + (-p0.y+3*p1.y-3*p2.y+p3.y)*t3);
+  return {x, y};
+}
+
+function interpolateYaw(p1, p2, t) {
+  // Linear interpolation of yaw, handling wrap-around
+  let d = p2.yaw - p1.yaw;
+  while (d > Math.PI) d -= 2*Math.PI;
+  while (d < -Math.PI) d += 2*Math.PI;
+  return p1.yaw + d * t;
+}
+
+function smoothSection(pts, startIdx, endIdx, spacing) {
+  // Use surrounding points for Catmull-Rom spline
+  const window = parseInt(document.getElementById('smoothWindow').value);
+  const expand = parseInt(document.getElementById('expandRange').value);
+
+  const s = Math.max(0, startIdx - expand);
+  const e = Math.min(pts.length - 1, endIdx + expand);
+  const section = pts.slice(s, e + 1);
+
+  if (section.length < 4) return section; // Need at least 4 for Catmull-Rom
+
+  // Build Catmull-Rom spline through section points
+  const result = [];
+  for (let i = 0; i < section.length - 1; i++) {
+    const p0 = section[Math.max(0, i-1)];
+    const p1 = section[i];
+    const p2 = section[i+1];
+    const p3 = section[Math.min(section.length-1, i+2)];
+
+    const segLen = Math.hypot(p2.x-p1.x, p2.y-p1.y);
+    const steps = Math.max(1, Math.ceil(segLen / spacing));
+
+    for (let j = 0; j < steps; j++) {
+      const t = j / steps;
+      const pt = catmullRom(p0, p1, p2, p3, t);
+      pt.yaw = interpolateYaw(p1, p2, t);
+      result.push(pt);
+    }
+  }
+  // Add last point
+  const last = section[section.length-1];
+  result.push({x: last.x, y: last.y, yaw: last.yaw});
+
+  return result;
+}
+
+function autoSmoothAll() {
+  if (!activeRoutePoints || activeRoutePoints.length < 3) return;
+  if (issues.length === 0) {
+    alert('没有检测到曲率问题，无需平滑。');
+    return;
+  }
+
+  const spacing = parseFloat(document.getElementById('smoothSpacing').value);
+  const pts = activeRoutePoints;
+
+  // Identify contiguous problem regions
+  let regions = [];
+  let regionStart = issues[0].index;
+  let regionEnd = issues[0].index;
+
+  for (let i = 1; i < issues.length; i++) {
+    if (issues[i].index - regionEnd <= 5) {
+      regionEnd = issues[i].index;
+    } else {
+      regions.push([regionStart, regionEnd]);
+      regionStart = issues[i].index;
+      regionEnd = issues[i].index;
+    }
+  }
+  regions.push([regionStart, regionEnd]);
+
+  // Build new point list: keep good sections, smooth problem sections
+  let newPts = [];
+  let lastEnd = 0;
+
+  for (const [rs, re] of regions) {
+    // Expand the region
+    const expand = parseInt(document.getElementById('expandRange').value);
+    const s = Math.max(0, rs - expand);
+    const e = Math.min(pts.length - 1, re + expand);
+
+    // Keep points before this region
+    if (s > lastEnd) {
+      newPts.push(...pts.slice(lastEnd, s));
+    }
+
+    // Smooth this region
+    const smoothed = smoothSection(pts, rs, re, spacing);
+    // Copy over metadata from the original points
+    for (const sp of smoothed) {
+      sp.pause = 0;
+      sp.motion = pts[rs].motion || 'forward';
+      sp.pass_radius = pts[rs].pass_radius || 0.3;
+      sp.reverse_pass_radius = pts[rs].reverse_pass_radius || 0.3;
+    }
+    newPts.push(...smoothed);
+
+    lastEnd = e + 1;
+  }
+
+  // Keep remaining points
+  if (lastEnd < pts.length) {
+    newPts.push(...pts.slice(lastEnd));
+  }
+
+  smoothedPoints = newPts;
+  activeRoutePoints = newPts;
+  computeIssues();
+  fitView();
+  redraw();
+  document.getElementById('statusRoute').textContent =
+    `${activeRouteName}: ${newPts.length} 点 (已平滑) · ${pathLength(newPts).toFixed(2)}m`;
+}
+
+// ==================== YAML EXPORT ====================
+function generateFixedYaml() {
+  if (!yamlData) return '';
+  const pts = activeRoutePoints;
+
+  // Deep clone yamlData and replace the active route
+  const outData = JSON.parse(JSON.stringify(yamlData));
+  if (outData.routes && outData.routes[activeRouteName]) {
+    outData.routes[activeRouteName] = pts.map(p => ({
+      x: parseFloat(p.x.toFixed(6)),
+      y: parseFloat(p.y.toFixed(6)),
+      yaw: parseFloat(p.yaw.toFixed(6)),
+      pause: p.pause || 0,
+      motion: p.motion || 'forward',
+      pass_radius: p.pass_radius || 0.3,
+      reverse_pass_radius: p.reverse_pass_radius || 0.3
+    }));
+  }
+
+  // Build YAML manually to preserve style
+  let yml = '# Origincar Waypoints — 曲率优化版本\n';
+  yml += `# 由 Origincar Waypoint Editor 生成\n`;
+  yml += `# 原始文件: waypoints_flowpath_custom_rpp713.yaml\n`;
+  yml += `# 平滑参数: 间距=${document.getElementById('smoothSpacing').value}m\n\n`;
+  yml += jsyaml.dump(outData, { indent: 2, lineWidth: 120, noRefs: true });
+  return yml;
+}
+
+function showExport() {
+  if (!yamlData) { alert('请先加载 YAML 文件'); return; }
+  document.getElementById('exportText').value = generateFixedYaml();
+  document.getElementById('exportPanel').style.display = 'flex';
+}
+
+function copyExport() {
+  const text = document.getElementById('exportText').value;
+  navigator.clipboard.writeText(text).then(() => alert('已复制到剪贴板!'));
+}
+
+function downloadFixedYaml() {
+  if (!yamlData) { alert('请先加载 YAML 文件'); return; }
+  const text = document.getElementById('exportText').value || generateFixedYaml();
+  const blob = new Blob([text], {type: 'text/yaml'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `waypoints_flowpath_custom_rpp713_fixed.yaml`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ==================== CANVAS RENDERING ====================
+function initCanvas() {
+  canvas = document.getElementById('mainCanvas');
+  ctx = canvas.getContext('2d');
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const wrap = document.getElementById('canvasWrap');
+  wrap.addEventListener('wheel', e => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.1 : 0.9;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    viewX = mx - (mx - viewX) * factor;
+    viewY = my - (my - viewY) * factor;
+    viewScale *= factor;
+    viewScale = Math.max(30, Math.min(500, viewScale));
+    redraw();
+  });
+
+  wrap.addEventListener('mousedown', e => {
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    dragViewX = viewX; dragViewY = viewY;
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    viewX = dragViewX + (e.clientX - dragStartX);
+    viewY = dragViewY + (e.clientY - dragStartY);
+    redraw();
+    // Update hover
+    updateHover(e);
+  });
+  window.addEventListener('mouseup', () => { dragging = false; });
+
+  canvas.addEventListener('mousemove', e => {
+    if (!dragging) updateHover(e);
+  });
+}
+
+function updateHover(e) {
+  const rect = canvas.getBoundingClientRect();
+  const mx = (e.clientX - rect.left - viewX) / viewScale;
+  const my = (e.clientY - rect.top - viewY) / viewScale;
+  if (activeRoutePoints.length > 0) {
+    let closest = 0, minDist = Infinity;
+    for (let i=0; i<activeRoutePoints.length; i++) {
+      const d = Math.hypot(activeRoutePoints[i].x-mx, activeRoutePoints[i].y-my);
+      if (d < minDist) { minDist = d; closest = i; }
+    }
+    if (minDist < 0.3) {
+      const p = activeRoutePoints[closest];
+      document.getElementById('statusHover').textContent =
+        `鼠标: #${closest} (${p.x.toFixed(3)}, ${p.y.toFixed(3)}) yaw=${(p.yaw*180/Math.PI).toFixed(1)}°`;
+    } else {
+      document.getElementById('statusHover').textContent = `鼠标: (${mx.toFixed(2)}, ${my.toFixed(2)})`;
+    }
+  }
+}
+
+function resizeCanvas() {
+  const wrap = document.getElementById('canvasWrap');
+  canvas.width = wrap.clientWidth;
+  canvas.height = wrap.clientHeight;
+  redraw();
+}
+
+function toScreen(x, y) {
+  return { sx: x * viewScale + viewX, sy: y * viewScale + viewY };
+}
+
+function fitView() {
+  if (activeRoutePoints.length === 0) return;
+  let minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
+  for (const p of activeRoutePoints) {
+    minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x);
+    minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y);
+  }
+  const pad = 0.5;
+  minX -= pad; maxX += pad; minY -= pad; maxY += pad;
+  const dataW = maxX - minX, dataH = maxY - minY;
+  const scaleX = (canvas.width - 40) / dataW;
+  const scaleY = (canvas.height - 40) / dataH;
+  viewScale = Math.min(scaleX, scaleY);
+  viewScale = Math.max(30, Math.min(500, viewScale));
+  viewX = (canvas.width - dataW * viewScale) / 2 - minX * viewScale;
+  viewY = (canvas.height - dataH * viewScale) / 2 - minY * viewScale;
+  redraw();
+}
+
+function redraw() {
+  if (!ctx) return;
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // Background grid
+  ctx.strokeStyle = '#1a2a3a';
+  ctx.lineWidth = 0.5;
+  const gridSize = 1.0; // 1m grid
+  const left = -viewX / viewScale;
+  const top = -viewY / viewScale;
+  const right = (w - viewX) / viewScale;
+  const bottom = (h - viewY) / viewScale;
+  for (let gx = Math.floor(left/gridSize)*gridSize; gx <= right; gx += gridSize) {
+    const {sx} = toScreen(gx, 0);
+    ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx, h); ctx.stroke();
+  }
+  for (let gy = Math.floor(top/gridSize)*gridSize; gy <= bottom; gy += gridSize) {
+    const {sy} = toScreen(0, gy);
+    ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
+  }
+
+  // Draw other routes in dim color
+  for (const [name, pts] of Object.entries(allRoutes)) {
+    if (name === activeRouteName) continue;
+    drawPath(pts, '#1a3040', 1, false);
+  }
+
+  // Draw active route
+  if (activeRoutePoints.length > 0) {
+    const showCurv = document.getElementById('showCurvature').checked;
+
+    if (showCurv && activeRoutePoints.length >= 3) {
+      // Draw curvature heatmap as colored segments
+      for (let i = 1; i < activeRoutePoints.length - 1; i++) {
+        const r = mengerRadius(activeRoutePoints[i-1], activeRoutePoints[i], activeRoutePoints[i+1]);
+        const delta = directionChange(activeRoutePoints[i-1], activeRoutePoints[i], activeRoutePoints[i+1]);
+        const deltaDeg = delta * 180 / Math.PI;
+
+        let color;
+        if (r < 0.2 || deltaDeg > 30) color = '#ff4040';
+        else if (r < 0.35 || deltaDeg > 18) color = '#ff8040';
+        else if (r < 0.6 || deltaDeg > 10) color = '#ffc040';
+        else color = '#40c060';
+
+        const p0 = activeRoutePoints[i-1], p1 = activeRoutePoints[i];
+        const {sx: x0, sy: y0} = toScreen(p0.x, p0.y);
+        const {sx: x1, sy: y1} = toScreen(p1.x, p1.y);
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+      }
+    }
+
+    // Draw path outline
+    drawPath(activeRoutePoints, '#60a0d0', 1.5, true);
+
+    // Draw yaw arrows
+    if (document.getElementById('showYaw').checked) {
+      const arrowLen = 0.15;
+      for (let i = 0; i < activeRoutePoints.length; i += Math.max(1, Math.floor(activeRoutePoints.length / 50))) {
+        const p = activeRoutePoints[i];
+        const {sx, sy} = toScreen(p.x, p.y);
+        const ax = sx + Math.cos(p.yaw) * arrowLen * viewScale;
+        const ay = sy + Math.sin(p.yaw) * arrowLen * viewScale;
+
+        ctx.strokeStyle = '#80e0ff';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ax, ay); ctx.stroke();
+
+        // Arrowhead
+        const hLen = 0.06 * viewScale;
+        const hAng = 0.6;
+        const ahx1 = ax - Math.cos(p.yaw - hAng) * hLen;
+        const ahy1 = ay - Math.sin(p.yaw - hAng) * hLen;
+        const ahx2 = ax - Math.cos(p.yaw + hAng) * hLen;
+        const ahy2 = ay - Math.sin(p.yaw + hAng) * hLen;
+        ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ahx1, ahy1); ctx.lineTo(ahx2, ahy2); ctx.fillStyle = '#80e0ff'; ctx.fill();
+      }
+    }
+
+    // Draw point dots
+    for (let i = 0; i < activeRoutePoints.length; i++) {
+      const p = activeRoutePoints[i];
+      const {sx, sy} = toScreen(p.x, p.y);
+      const r = Math.max(2, Math.min(6, viewScale * 0.04));
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath(); ctx.arc(sx, sy, r, 0, Math.PI*2); ctx.fill();
+    }
+
+    // Draw labels
+    if (document.getElementById('showLabels').checked) {
+      ctx.font = `${Math.max(8, viewScale*0.07)}px sans-serif`;
+      ctx.fillStyle = '#80a0c0';
+      for (let i = 0; i < activeRoutePoints.length; i += Math.max(1, Math.floor(activeRoutePoints.length / 80))) {
+        const p = activeRoutePoints[i];
+        const {sx, sy} = toScreen(p.x, p.y);
+        ctx.fillText(i, sx + 6, sy - 4);
+      }
+    }
+
+    // Highlight issues
+    for (const iss of issues) {
+      const p = activeRoutePoints[iss.index];
+      if (!p) continue;
+      const {sx, sy} = toScreen(p.x, p.y);
+      const r = Math.max(5, viewScale * 0.08);
+      ctx.strokeStyle = iss.severity === 'critical' ? '#ff4040' : '#ffa040';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(sx, sy, r+3, 0, Math.PI*2); ctx.stroke();
+    }
+  }
+}
+
+function drawPath(pts, color, width, withDots) {
+  if (pts.length < 2) return;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  const {sx, sy} = toScreen(pts[0].x, pts[0].y);
+  ctx.moveTo(sx, sy);
+  for (let i = 1; i < pts.length; i++) {
+    const {sx, sy} = toScreen(pts[i].x, pts[i].y);
+    ctx.lineTo(sx, sy);
+  }
+  ctx.stroke();
+
+  if (withDots) {
+    for (const p of pts) {
+      const {sx, sy} = toScreen(p.x, p.y);
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(sx, sy, 1.5, 0, Math.PI*2); ctx.fill();
+    }
+  }
+}
+
+function centerViewOn(x, y) {
+  viewX = canvas.width/2 - x * viewScale;
+  viewY = canvas.height/2 - y * viewScale;
+}
+
+// ==================== DEBOUNCE ====================
+let debounceTimer;
+function debounceRecompute() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    computeIssues();
+    redraw();
+  }, 250);
+}
+
+// ==================== INIT ====================
+window.addEventListener('DOMContentLoaded', () => {
+  initCanvas();
+
+  // Try to load YAML from the server
+  fetch('http://localhost:8081/waypoints_flowpath_custom_rpp713.yaml')
+    .then(r => r.ok ? r.text() : Promise.reject())
+    .then(loadYamlText)
+    .catch(() => {
+      // Try embedded fallback
+      tryLoadEmbeddedYaml();
+      if (!defaultYamlLoaded) {
+        document.getElementById('statusFile').textContent =
+          '未找到 YAML 文件 — 请点击 "加载 YAML" 按钮加载文件';
+      }
+    });
+});
+</script>
+</body>
+</html>
