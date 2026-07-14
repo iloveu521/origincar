@@ -1,0 +1,1366 @@
+field_to_map:
+  source: flowpath/dev_ws/src/origincar/origincar_system/config/waypoints.yaml
+  source_map: race_modify.pgm
+  source_yaml: race_modify.yaml
+  method: copied_flowpath_waypoints_on_same_race_modify_map
+  map_origin:
+  - -0.866
+  - -0.648
+  - 0.0
+  resolution: 0.05
+waypoints:
+  point_P:
+    x: -0.0
+    y: -0.071
+    yaw: 0.0
+    description: P start/parking center
+  qr_point:
+    x: 3.2471
+    y: 0.9409
+    yaw: 0.335969
+    description: Legacy QR reference pose; competition scanning uses route metadata
+  zone_b_a_side:
+    x: 2.014753
+    y: 1.786151
+    yaw: 0.969541
+    description: B corridor A side from flowpath point_03
+  zone_b_c_side:
+    x: 1.744509
+    y: 2.63476
+    yaw: 2.500253
+    description: C side after B crossing
+routes:
+  p_to_qr_to_b_rpp:
+  - {x: 0.0, y: -0.071, yaw: 0.065384, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.121449, y: -0.063048, yaw: 0.075414, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.241981, y: -0.052716, yaw: 0.110658, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.369399, y: -0.035498, yaw: 0.099667, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.483043, y: -0.028611, yaw: 0.080469, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.582912, y: -0.018279, yaw: 0.063408, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.7, y: -0.014835, yaw: 0.090661, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.8102, y: 0.002383, yaw: 0.14816, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 0.930731, y: 0.019602, yaw: 0.146012, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.044375, y: 0.036821, yaw: 0.165149, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.158019, y: 0.057484, yaw: 0.170213, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.264775, y: 0.074702, yaw: 0.154997, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.378419, y: 0.091921, yaw: 0.17286, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.481732, y: 0.112583, yaw: 0.185348, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.59882, y: 0.133246, yaw: 0.167643, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.705576, y: 0.150465, yaw: 0.175592, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.812332, y: 0.171127, yaw: 0.241355, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 1.92942, y: 0.205565, yaw: 0.306677, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 2.018957, y: 0.236559, yaw: 0.383285, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 2.142932, y: 0.291659, yaw: 0.426626, pause: 0.0, motion: forward, pass_radius: 0.35}
+  - {x: 2.246245, y: 0.339871, yaw: 0.469977, pause: 0.0, motion: forward, pass_radius: 0.10, qr_scan: true}
+  - {x: 2.359888, y: 0.401859, yaw: 0.469977, pause: 0.0, motion: forward, pass_radius: 0.10, qr_scan: true}
+  - {x: 2.463201, y: 0.450071, yaw: 0.395689, pause: 0.0, motion: forward, pass_radius: 0.10, qr_scan: true}
+  - {x: 2.631945, y: 0.515503, yaw: 0.657075, pause: 0.0, motion: forward, pass_radius: 0.10, speed_gain: 0.50, angular_gain: 1.50, qr_scan: true}
+  - {x: 2.704264, y: 0.636034, yaw: 1.315613, pause: 0.0, motion: forward, pass_radius: 0.10, speed_gain: 0.50, angular_gain: 1.50, qr_scan: true, qr_deadline: true}
+  - {x: 2.693933, y: 0.753122, yaw: 1.801496, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  - {x: 2.656967, y: 0.837399, yaw: 2.067972, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  - {x: 2.609844, y: 0.908084, yaw: 2.135946, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  - {x: 2.534447, y: 1.030603, yaw: 2.339802, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  - {x: 2.327106, y: 1.200246, yaw: 2.46246, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  - {x: 2.143327, y: 1.346327, yaw: 2.311064, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  - {x: 1.978397, y: 1.581942, yaw: 1.884417, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  - {x: 2.014753, y: 1.786151, yaw: 1.394609, pause: 0.0, motion: forward, pass_radius: 0.35, speed_gain: 0.50, angular_gain: 1.50}
+  ring_cw: &id001
+  - x: 2.014753
+    y: 1.786151
+    yaw: 1.434589
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0187
+    y: 1.8149
+    yaw: 1.560723
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0194
+    y: 1.8813
+    yaw: 1.611081
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0155
+    y: 1.9761
+    yaw: 1.662599
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0052
+    y: 2.0887
+    yaw: 1.7323
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9855
+    y: 2.2096
+    yaw: 1.828198
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9536
+    y: 2.3308
+    yaw: 1.967324
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.9055
+    y: 2.4457
+    yaw: 2.160602
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.8367
+    y: 2.5485
+    yaw: 2.389186
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.7445
+    y: 2.6348
+    yaw: 2.606026
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.6305
+    y: 2.7024
+    yaw: 2.783949
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.4992
+    y: 2.7515
+    yaw: 2.916637
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.3565
+    y: 2.7841
+    yaw: 3.014161
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.208
+    y: 2.8032
+    yaw: 3.075001
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.0587
+    y: 2.8131
+    yaw: 3.097382
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.9127
+    y: 2.8196
+    yaw: 3.075851
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.7729
+    y: 2.8288
+    yaw: 3.002359
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.6413
+    y: 2.8472
+    yaw: 2.870419
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.5199
+    y: 2.881
+    yaw: 2.680406
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.4117
+    y: 2.9347
+    yaw: 2.564343
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.3216
+    y: 3.0101
+    yaw: 2.201064
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.2526
+    y: 3.1047
+    yaw: 1.990844
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.2045
+    y: 3.2124
+    yaw: 1.829911
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.1743
+    y: 3.3262
+    yaw: 1.706899
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1585
+    y: 3.4421
+    yaw: 1.607412
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1542
+    y: 3.5583
+    yaw: 1.51443
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1607
+    y: 3.6739
+    yaw: 1.462285
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1792
+    y: 3.7879
+    yaw: 1.278299
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.2125
+    y: 3.8985
+    yaw: 1.10497
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.2642
+    y: 4.0013
+    yaw: 0.492837
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.321
+    y: 4.0318
+    yaw: 0.741945
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.4467
+    y: 4.05
+    yaw: 0.150368
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.567
+    y: 4.0683
+    yaw: 0.110654
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.4
+    capture: true
+    speed_gain: 0.60
+  - x: 0.6654
+    y: 4.0792
+    yaw: 0.03882
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.8531
+    y: 4.0865
+    yaw: 0.109449
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.019
+    y: 4.1047
+    yaw: 0.0
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.1429
+    y: 4.1047
+    yaw: 0.025968
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.2833
+    y: 4.1084
+    yaw: 0.01316
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.4218
+    y: 4.1102
+    yaw: 0.066563
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.5585
+    y: 4.1193
+    yaw: 0.063208
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.7024
+    y: 4.1284
+    yaw: 0.022723
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.8628
+    y: 4.132
+    yaw: -0.051236
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.005
+    y: 4.1248
+    yaw: -0.030358
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.1526
+    y: 4.112
+    yaw: 0.032957
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.3185
+    y: 4.1175
+    yaw: 0.013884
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.4497
+    y: 4.1193
+    yaw: 0.068389
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.5827
+    y: 4.1284
+    yaw: 0.081786
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.6939
+    y: 4.1375
+    yaw: 0.042834
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.8215
+    y: 4.143
+    yaw: -0.011113
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.9855
+    y: 4.1412
+    yaw: 0.099667
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.1313
+    y: 4.1557
+    yaw: -0.129703
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.2571
+    y: 4.1393
+    yaw: -0.110655
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.3883
+    y: 4.1248
+    yaw: -0.137062
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.494
+    y: 4.1102
+    yaw: -0.492361
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+    capture: true
+  - x: 3.5994
+    y: 4.0536
+    yaw: -0.756994
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.6807
+    y: 3.9769
+    yaw: -0.944061
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.7428
+    y: 3.8911
+    yaw: -1.114567
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.7881
+    y: 3.7987
+    yaw: -1.256095
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8196
+    y: 3.702
+    yaw: -1.368686
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8399
+    y: 3.6031
+    yaw: -1.459119
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.851
+    y: 3.5035
+    yaw: -1.539814
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8541
+    y: 3.4046
+    yaw: -1.624985
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8488
+    y: 3.3073
+    yaw: -1.728047
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8338
+    y: 3.2126
+    yaw: -1.856795
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.807
+    y: 3.1213
+    yaw: -2.027258
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.7646
+    y: 3.035
+    yaw: -2.243525
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.7018
+    y: 2.9562
+    yaw: -2.686955
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.5906
+    y: 2.9018
+    yaw: -2.63286
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.4958
+    y: 2.849
+    yaw: -2.927534
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.3701
+    y: 2.8216
+    yaw: -2.985724
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.2425
+    y: 2.8016
+    yaw: -3.078384
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.0985
+    y: 2.7925
+    yaw: -3.075026
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.9345
+    y: 2.7815
+    yaw: -3.065784
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.7905
+    y: 2.7706
+    yaw: -3.097666
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.6246
+    y: 2.7633
+    yaw: -3.017237
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.4934
+    y: 2.7469
+    yaw: -2.871239
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.3642
+    y: 2.7111
+    yaw: -2.849175
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.2522
+    y: 2.6774
+    yaw: -2.614065
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.1617
+    y: 2.6247
+    yaw: -2.308001
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.0953
+    y: 2.5515
+    yaw: -2.032529
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.0506
+    y: 2.4616
+    yaw: -1.935757
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.0224
+    y: 2.3608
+    yaw: -1.722018
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.0061
+    y: 2.2539
+    yaw: -1.640167
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9985
+    y: 2.1446
+    yaw: -1.586976
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9968
+    y: 2.0374
+    yaw: -1.550565
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9988
+    y: 1.9382
+    yaw: -1.517511
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0085
+    y: 1.862
+    yaw: -1.638
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0148
+    y: 1.7862
+    yaw: -2.16276
+    pause: 0
+    motion: forward
+    pass_radius: 0.25
+  ring_ccw: &id002
+  - x: 2.014753
+    y: 1.786151
+    yaw: 1.675506
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0032
+    y: 1.8556
+    yaw: 1.624081
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9988
+    y: 1.9382
+    yaw: 1.591028
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9968
+    y: 2.0374
+    yaw: 1.572119
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9985
+    y: 2.1446
+    yaw: 1.501426
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0061
+    y: 2.2539
+    yaw: 1.419575
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0224
+    y: 2.3608
+    yaw: 1.298639
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0506
+    y: 2.4616
+    yaw: 1.109064
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.0953
+    y: 2.5515
+    yaw: 0.833591
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.1617
+    y: 2.6247
+    yaw: 0.527527
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.2522
+    y: 2.6774
+    yaw: 0.562675
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.3784
+    y: 2.757
+    yaw: 0.329045
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 2.5102
+    y: 2.802
+    yaw: 0.207497
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.6323
+    y: 2.8277
+    yaw: 0.231094
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.7962
+    y: 2.8663
+    yaw: 0.0
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.944
+    y: 2.8663
+    yaw: 0.019605
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.1078
+    y: 2.8695
+    yaw: 0.021735
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.2556
+    y: 2.8727
+    yaw: 0.047581
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.3906
+    y: 2.8791
+    yaw: 0.230292
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.4973
+    y: 2.9041
+    yaw: 0.255804
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.6152
+    y: 2.935
+    yaw: 0.240279
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.7018
+    y: 2.9562
+    yaw: 0.898067
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.7646
+    y: 3.035
+    yaw: 1.114335
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.807
+    y: 3.1213
+    yaw: 1.284798
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.8338
+    y: 3.2126
+    yaw: 1.349431
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8488
+    y: 3.3073
+    yaw: 1.516608
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8541
+    y: 3.4046
+    yaw: 1.559533
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.851
+    y: 3.5035
+    yaw: 1.682474
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8399
+    y: 3.6031
+    yaw: 1.772906
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.8196
+    y: 3.702
+    yaw: 1.885497
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.7881
+    y: 3.7987
+    yaw: 2.027026
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.7428
+    y: 3.8911
+    yaw: 2.197532
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.6807
+    y: 3.9769
+    yaw: 2.384598
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.5994
+    y: 4.0536
+    yaw: 2.48106
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 3.4973
+    y: 4.132
+    yaw: 2.959038
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+    capture: true
+  - x: 3.3794
+    y: 4.1538
+    yaw: 2.966918
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.2561
+    y: 4.1756
+    yaw: 3.103151
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.1146
+    y: 4.181
+    yaw: 3.046635
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 3.0004
+    y: 4.1919
+    yaw: 3.141593
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.8679
+    y: 4.1919
+    yaw: -3.138216
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.7192
+    y: 4.1919
+    yaw: 3.106314
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.5651
+    y: 4.1973
+    yaw: 3.119621
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.4
+    y: 4.2009
+    yaw: -3.096171
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.2803
+    y: 4.1955
+    yaw: -3.045122
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.1679
+    y: 4.1846
+    yaw: -3.058446
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0373
+    y: 4.1737
+    yaw: 3.124642
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9303
+    y: 4.1756
+    yaw: 3.141593
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.7725
+    y: 4.1756
+    yaw: 3.12341
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.573
+    y: 4.1792
+    yaw: -3.119615
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.4079
+    y: 4.1756
+    yaw: 3.055387
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.261
+    y: 4.1883
+    yaw: 3.098143
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.1358
+    y: 4.1937
+    yaw: 3.04853
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.9998
+    y: 4.2064
+    yaw: 3.113427
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.871
+    y: 4.21
+    yaw: 3.005191
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.7785
+    y: 4.2227
+    yaw: -2.914794
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.6135
+    y: 4.1846
+    yaw: -2.706239
+    pause: 1
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.4575
+    y: 4.1121
+    yaw: -2.620457
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+    capture: true
+  - x: 0.3596
+    y: 4.0559
+    yaw: -2.622239
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.2642
+    y: 4.0013
+    yaw: -2.036623
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.2125
+    y: 3.8985
+    yaw: -1.863293
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.1792
+    y: 3.7879
+    yaw: -1.731569
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1607
+    y: 3.6739
+    yaw: -1.627163
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1542
+    y: 3.5583
+    yaw: -1.53418
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1585
+    y: 3.4421
+    yaw: -1.434694
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.1743
+    y: 3.3262
+    yaw: -1.311681
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.2045
+    y: 3.2124
+    yaw: -1.150749
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.2526
+    y: 3.1047
+    yaw: -0.940528
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.3216
+    y: 3.0101
+    yaw: -0.696633
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.4117
+    y: 2.9347
+    yaw: -0.461187
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.5199
+    y: 2.881
+    yaw: -0.364185
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.6413
+    y: 2.8472
+    yaw: -0.139234
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 0.7729
+    y: 2.8288
+    yaw: -0.065741
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 0.9127
+    y: 2.8196
+    yaw: -0.04421
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.0587
+    y: 2.8131
+    yaw: -0.066592
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.208
+    y: 2.8032
+    yaw: -0.127432
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.3565
+    y: 2.7841
+    yaw: -0.224956
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.4992
+    y: 2.7515
+    yaw: -0.357643
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.6305
+    y: 2.7024
+    yaw: -0.535566
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.7445
+    y: 2.6348
+    yaw: -0.752407
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.8367
+    y: 2.5485
+    yaw: -0.980991
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.9055
+    y: 2.4457
+    yaw: -1.174268
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.9536
+    y: 2.3308
+    yaw: -1.313395
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 1.9855
+    y: 2.2096
+    yaw: -1.409293
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0052
+    y: 2.0887
+    yaw: -1.478994
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0155
+    y: 1.9761
+    yaw: -1.502492
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0194
+    y: 1.8813
+    yaw: -1.551247
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0187
+    y: 1.8149
+    yaw: -1.61916
+    pause: 0
+    motion: forward
+    pass_radius: 0.4
+  - x: 2.0148
+    y: 1.7862
+    yaw: -2.16276
+    pause: 0
+    motion: forward
+    pass_radius: 0.25
+  return_to_p_rpp:
+  - x: 2.0148
+    y: 1.7862
+    yaw: -2.16276
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.25
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.8708
+    y: 1.6535
+    yaw: -2.397
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.726931
+    y: 1.520844
+    yaw: -2.396875
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+    speed_gain: 0.50
+    angular_gain: 1.50
+  - x: 1.58302
+    y: 1.38819
+    yaw: -2.396875
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.439109
+    y: 1.255536
+    yaw: -2.396879
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.295198
+    y: 1.122883
+    yaw: -2.396875
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.151287
+    y: 0.990229
+    yaw: -2.396879
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.007376
+    y: 0.857576
+    yaw: -2.396871
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.863466
+    y: 0.724922
+    yaw: -2.396875
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.719555
+    y: 0.592268
+    yaw: -2.396879
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.575644
+    y: 0.459615
+    yaw: -2.396875
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.431733
+    y: 0.326961
+    yaw: -2.396875
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.287822
+    y: 0.194307
+    yaw: -2.396879
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.143911
+    y: 0.061654
+    yaw: -2.396875
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.0
+    y: -0.071
+    yaw: 0.0
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.25
+ring_cw: *id001
+ring_ccw: *id002
+custom_rpp:
+  stuck_skip:
+    enabled: false
+    timeout_sec: 0.8
+    max_distance: 0.45
+    recovery_enabled: false
+    recovery_max_distance: 1.2
+    recovery_duration_sec: 0.35
+    recovery_speed: 0.12
+    recovery_angular_z: 0.25
+    description: Stuck skip & recovery are DISABLED. RPP no longer reverses or hunts
+      for lost waypoints; it re-acquires the nearest remaining point instead.

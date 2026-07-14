@@ -1,0 +1,2688 @@
+field_to_map:
+  source_map: race_modify.pgm
+  source_yaml: race_modify.yaml
+  method: detected_black_border_centerline
+  map_left_m: -0.541
+  map_bottom_m: -0.273
+  x_scale_m_per_field_m: 1.02
+  y_scale_m_per_field_m: 1.01
+  formula:
+    map_x: -0.541 + field_x * 1.02
+    map_y: -0.273 + field_y * 1.01
+waypoints:
+  point_P:
+    x: -0.0
+    y: -0.071
+    yaw: 0.0
+    description: P start/parking center
+  qr_point:
+    x: 3.948
+    y: 1.281
+    yaw: 0.66
+    description: QR scan pose, 0.10 m outside QR rectangle diagonal
+  zone_b_a_side:
+    x: 2.009
+    y: 1.747
+    yaw: 1.57
+    description: B corridor entrance from A side
+  zone_b_c_side:
+    x: 2.009
+    y: 2.676
+    yaw: 1.57
+    description: C ring entrance from B side
+routes:
+  p_to_qr:
+    - x: -0.0
+      y: -0.071
+      yaw: 0.28
+      pause: 0.0
+      motion: forward
+    - x: 0.126
+      y: -0.035
+      yaw: 0.28
+      pause: 0.0
+      motion: forward
+    - x: 0.253
+      y: 0.001
+      yaw: 0.28
+      pause: 0.0
+      motion: forward
+    - x: 0.38
+      y: 0.037
+      yaw: 0.28
+      pause: 0.0
+      motion: forward
+    - x: 0.507
+      y: 0.073
+      yaw: 0.28
+      pause: 0.0
+      motion: forward
+    - x: 0.633
+      y: 0.109
+      yaw: 0.28
+      pause: 0.0
+      motion: forward
+    - x: 0.76
+      y: 0.145
+      yaw: 0.28
+      pause: 0.0
+      motion: forward
+    - x: 0.887
+      y: 0.181
+      yaw: 0.29
+      pause: 0.0
+      motion: forward
+    - x: 1.018
+      y: 0.22
+      yaw: 0.29
+      pause: 0.0
+      motion: forward
+    - x: 1.149
+      y: 0.259
+      yaw: 0.29
+      pause: 0.0
+      motion: forward
+    - x: 1.28
+      y: 0.298
+      yaw: 0.29
+      pause: 0.0
+      motion: forward
+    - x: 1.412
+      y: 0.337
+      yaw: 0.29
+      pause: 0.0
+      motion: forward
+    - x: 1.543
+      y: 0.376
+      yaw: 0.29
+      pause: 0.0
+      motion: forward
+    - x: 1.674
+      y: 0.415
+      yaw: 0.29
+      pause: 0.0
+      motion: forward
+    - x: 1.805
+      y: 0.454
+      yaw: 0.32
+      pause: 0.0
+      motion: forward
+    - x: 1.936
+      y: 0.497
+      yaw: 0.32
+      pause: 0.0
+      motion: forward
+    - x: 2.067
+      y: 0.541
+      yaw: 0.32
+      pause: 0.0
+      motion: forward
+    - x: 2.198
+      y: 0.584
+      yaw: 0.32
+      pause: 0.0
+      motion: forward
+    - x: 2.33
+      y: 0.627
+      yaw: 0.32
+      pause: 0.0
+      motion: forward
+    - x: 2.461
+      y: 0.671
+      yaw: 0.32
+      pause: 0.0
+      motion: forward
+    - x: 2.592
+      y: 0.714
+      yaw: 0.32
+      pause: 0.0
+      motion: forward
+    - x: 2.723
+      y: 0.757
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 2.859
+      y: 0.815
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 2.995
+      y: 0.874
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 3.131
+      y: 0.932
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 3.267
+      y: 0.99
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 3.404
+      y: 1.048
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 3.54
+      y: 1.107
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 3.676
+      y: 1.165
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 3.812
+      y: 1.223
+      yaw: 0.4
+      pause: 0.0
+      motion: forward
+    - x: 3.948
+      y: 1.281
+      yaw: 0.66
+      pause: 0.0
+      motion: forward
+  a_to_b_entry_rpp:
+    - x: -0.0
+      y: -0.071
+      yaw: 0.18
+      pause: 0.0
+      motion: forward
+    - x: 0.119
+      y: -0.049
+      yaw: 0.18
+      pause: 0.0
+      motion: forward
+    - x: 0.239
+      y: -0.028
+      yaw: 0.18
+      pause: 0.0
+      motion: forward
+    - x: 0.358
+      y: -0.006
+      yaw: 0.18
+      pause: 0.0
+      motion: forward
+    - x: 0.478
+      y: 0.016
+      yaw: 0.18
+      pause: 0.0
+      motion: forward
+    - x: 0.597
+      y: 0.037
+      yaw: 0.18
+      pause: 0.0
+      motion: forward
+    - x: 0.717
+      y: 0.059
+      yaw: 0.18
+      pause: 0.0
+      motion: forward
+    - x: 0.836
+      y: 0.08
+      yaw: 0.14
+      pause: 0.0
+      motion: forward
+    - x: 0.967
+      y: 0.099
+      yaw: 0.14
+      pause: 0.0
+      motion: forward
+    - x: 1.098
+      y: 0.118
+      yaw: 0.14
+      pause: 0.0
+      motion: forward
+    - x: 1.229
+      y: 0.137
+      yaw: 0.14
+      pause: 0.0
+      motion: forward
+    - x: 1.361
+      y: 0.156
+      yaw: 0.14
+      pause: 0.0
+      motion: forward
+    - x: 1.492
+      y: 0.174
+      yaw: 0.14
+      pause: 0.0
+      motion: forward
+    - x: 1.623
+      y: 0.193
+      yaw: 0.14
+      pause: 0.0
+      motion: forward
+    - x: 1.754
+      y: 0.212
+      yaw: 0.33
+      pause: 0.0
+      motion: forward
+    - x: 1.856
+      y: 0.247
+      yaw: 0.33
+      pause: 0.0
+      motion: forward
+    - x: 1.958
+      y: 0.283
+      yaw: 0.33
+      pause: 0.0
+      motion: forward
+    - x: 2.06
+      y: 0.318
+      yaw: 0.33
+      pause: 0.0
+      motion: forward
+    - x: 2.162
+      y: 0.353
+      yaw: 1.25
+      pause: 0.0
+      motion: forward
+    - x: 2.199
+      y: 0.464
+      yaw: 1.25
+      pause: 0.0
+      motion: forward
+    - x: 2.237
+      y: 0.575
+      yaw: 1.25
+      pause: 0.0
+      motion: forward
+    - x: 2.274
+      y: 0.686
+      yaw: 1.81
+      pause: 0.0
+      motion: forward
+    - x: 2.247
+      y: 0.798
+      yaw: 1.81
+      pause: 0.0
+      motion: forward
+    - x: 2.22
+      y: 0.909
+      yaw: 1.81
+      pause: 0.0
+      motion: forward
+    - x: 2.193
+      y: 1.02
+      yaw: 1.91
+      pause: 0.0
+      motion: forward
+    - x: 2.152
+      y: 1.134
+      yaw: 1.91
+      pause: 0.0
+      motion: forward
+    - x: 2.111
+      y: 1.249
+      yaw: 1.91
+      pause: 0.0
+      motion: forward
+    - x: 2.07
+      y: 1.363
+      yaw: 1.73
+      pause: 0.0
+      motion: forward
+    - x: 2.05
+      y: 1.491
+      yaw: 1.73
+      pause: 0.0
+      motion: forward
+    - x: 2.029
+      y: 1.619
+      yaw: 1.73
+      pause: 0.0
+      motion: forward
+    - x: 2.009
+      y: 1.747
+      yaw: 1.57
+      pause: 0.0
+      motion: forward
+  b_crossing_cw_rpp:
+    - x: 2.014753
+      y: 1.786151
+      yaw: 0.969541
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.018688
+      y: 1.814862
+      yaw: 1.522433
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.019357
+      y: 1.881272
+      yaw: 1.590346
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.015536
+      y: 1.97607
+      yaw: 1.639101
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.005165
+      y: 2.088723
+      yaw: 1.69883
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.985474
+      y: 2.209584
+      yaw: 1.780809
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.953565
+      y: 2.3308
+      yaw: 1.897547
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.905451
+      y: 2.445711
+      yaw: 2.063615
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.836657
+      y: 2.5485
+      yaw: 2.276059
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.744509
+      y: 2.63476
+      yaw: 2.500253
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+  b_crossing_ccw_rpp: &id001
+    - x: 2.00898
+      y: 1.80071
+      yaw: 1.735518
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.003216
+      y: 1.855556
+      yaw: 1.644647
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.998809
+      y: 1.938184
+      yaw: 1.606055
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.996801
+      y: 2.037422
+      yaw: 1.572119
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.998536
+      y: 2.144645
+      yaw: 1.527744
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.006126
+      y: 2.253882
+      yaw: 1.460751
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.022421
+      y: 2.360815
+      yaw: 1.360099
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.05056
+      y: 2.461642
+      yaw: 1.205836
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+  b_crossing_rpp: *id001
+  qr_to_b_reverse_then_direct_rpp:
+    - x: 3.948
+      y: 1.281
+      yaw: -2.48
+      pause: 0.0
+      motion: reverse
+      reverse_pass_radius: 0.3
+    - x: 3.83
+      y: 1.189
+      yaw: -2.48
+      pause: 0.0
+      motion: reverse
+      reverse_pass_radius: 0.3
+    - x: 3.71
+      y: 1.096
+      yaw: -2.48
+      pause: 0.0
+      motion: reverse
+      reverse_pass_radius: 0.3
+    - x: 3.78
+      y: 1.22
+      yaw: 0.95
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.8
+      y: 1.36
+      yaw: 1.35
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.75
+      y: 1.5
+      yaw: 2.05
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.62
+      y: 1.61
+      yaw: 2.65
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.52
+      y: 1.66
+      yaw: 2.85
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.43
+      y: 1.7
+      yaw: 3.05
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.24
+      y: 1.71
+      yaw: 3.1
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.05
+      y: 1.72
+      yaw: 3.12
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.86
+      y: 1.73
+      yaw: 3.12
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.67
+      y: 1.735
+      yaw: 3.12
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.48
+      y: 1.725
+      yaw: -3.05
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.3
+      y: 1.695
+      yaw: -2.85
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.16
+      y: 1.665
+      yaw: -2.55
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.055
+      y: 1.69
+      yaw: 1.9
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 1.747
+      yaw: 1.57
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+  qr_to_b_reverse_edge_arc:
+    - x: 3.948
+      y: 1.281
+      yaw: -2.11
+      pause: 0.0
+      motion: reverse
+    - x: 3.876
+      y: 1.161
+      yaw: -2.31
+      pause: 0.0
+      motion: reverse
+    - x: 3.781
+      y: 1.058
+      yaw: -2.5
+      pause: 0.0
+      motion: reverse
+    - x: 3.669
+      y: 0.974
+      yaw: -2.64
+      pause: 0.0
+      motion: reverse
+    - x: 3.548
+      y: 0.907
+      yaw: -2.75
+      pause: 0.0
+      motion: reverse
+    - x: 3.418
+      y: 0.853
+      yaw: -2.88
+      pause: 0.0
+      motion: reverse
+    - x: 3.283
+      y: 0.817
+      yaw: -2.94
+      pause: 0.0
+      motion: reverse
+    - x: 3.146
+      y: 0.789
+      yaw: -3.01
+      pause: 0.0
+      motion: reverse
+    - x: 3.008
+      y: 0.771
+      yaw: 2.9
+      pause: 0.0
+      motion: reverse
+    - x: 2.874
+      y: 0.803
+      yaw: 2.74
+      pause: 0.0
+      motion: forward
+    - x: 2.746
+      y: 0.858
+      yaw: 2.54
+      pause: 0.0
+      motion: forward
+    - x: 2.631
+      y: 0.937
+      yaw: 2.44
+      pause: 0.0
+      motion: forward
+    - x: 2.524
+      y: 1.027
+      yaw: 2.33
+      pause: 0.0
+      motion: forward
+    - x: 2.428
+      y: 1.129
+      yaw: 2.28
+      pause: 0.0
+      motion: forward
+    - x: 2.337
+      y: 1.235
+      yaw: 2.25
+      pause: 0.0
+      motion: forward
+    - x: 2.249
+      y: 1.344
+      yaw: 2.2
+      pause: 0.0
+      motion: forward
+    - x: 2.167
+      y: 1.457
+      yaw: 2.18
+      pause: 0.0
+      motion: forward
+    - x: 2.087
+      y: 1.572
+      yaw: 1.99
+      pause: 0.0
+      motion: forward
+    - x: 2.009
+      y: 1.747
+      yaw: 1.57
+      pause: 0.0
+      motion: forward
+  ring_ccw:
+    - x: 2.009
+      y: 2.801528
+      yaw: 1.570796
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 2.874662
+      yaw: 1.570796
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 2.927371
+      yaw: 0.31026
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.114173
+      y: 2.961091
+      yaw: 0.148998
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.242525
+      y: 2.980358
+      yaw: 0.069086
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.382938
+      y: 2.990074
+      yaw: 0.029663
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.531967
+      y: 2.994496
+      yaw: 0.023249
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.685193
+      y: 2.998059
+      yaw: 0.045549
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.838745
+      y: 3.005058
+      yaw: 0.095993
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.988222
+      y: 3.019451
+      yaw: 0.178291
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.128929
+      y: 3.044807
+      yaw: 0.296801
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.256367
+      y: 3.083782
+      yaw: 0.462079
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.36532
+      y: 3.138045
+      yaw: 0.667285
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.451818
+      y: 3.206192
+      yaw: 0.898067
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.514604
+      y: 3.284999
+      yaw: 1.114335
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.556984
+      y: 3.371304
+      yaw: 1.284798
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.583822
+      y: 3.462571
+      yaw: 1.189222
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.59884
+      y: 3.5
+      yaw: 0.0
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.604116
+      y: 3.5
+      yaw: 2.292749
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.60105
+      y: 3.503482
+      yaw: -2.839386
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.589881
+      y: 3.5
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.569606
+      y: 3.5
+      yaw: 2.144578
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.538142
+      y: 3.548682
+      yaw: 2.027026
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.492804
+      y: 3.641065
+      yaw: 2.197532
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.430671
+      y: 3.726869
+      yaw: 2.384598
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.349427
+      y: 3.803624
+      yaw: 2.571021
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.248588
+      y: 3.86834
+      yaw: 2.744279
+      pause: 1.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.131542
+      y: 3.917456
+      yaw: 2.892635
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.003706
+      y: 3.949956
+      yaw: 3.006409
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.870388
+      y: 3.968089
+      yaw: 3.086058
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.733858
+      y: 3.975679
+      yaw: 3.096026
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.594665
+      y: 3.982026
+      yaw: 3.071033
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.453177
+      y: 3.992026
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.309634
+      y: 3.992026
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.164361
+      y: 3.992026
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.017702
+      y: 3.992026
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 3.992026
+      yaw: 3.117055
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 3.992026
+      yaw: 3.111235
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 3.992026
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.926201
+      y: 3.992026
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.779527
+      y: 3.992026
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.633914
+      y: 3.992026
+      yaw: 3.132843
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.489002
+      y: 3.993294
+      yaw: 3.135954
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.344469
+      y: 3.994109
+      yaw: -3.136154
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.200508
+      y: 3.993326
+      yaw: -3.106743
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.058526
+      y: 3.988376
+      yaw: -3.045832
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.921802
+      y: 3.975243
+      yaw: -2.937995
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.794701
+      y: 3.949002
+      yaw: -2.768581
+      pause: 1.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.681544
+      y: 3.90472
+      yaw: -2.532467
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.587104
+      y: 3.838837
+      yaw: -2.265343
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.514214
+      y: 3.751335
+      yaw: -2.036623
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.462502
+      y: 3.648472
+      yaw: -1.863293
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.429211
+      y: 3.53792
+      yaw: -2.024501
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.41072
+      y: 3.5
+      yaw: 3.141593
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.404198
+      y: 3.5
+      yaw: 0.0
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.408455
+      y: 3.5
+      yaw: 0.0
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.424331
+      y: 3.5
+      yaw: -0.894818
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.454493
+      y: 3.462393
+      yaw: -1.150749
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.502595
+      y: 3.354693
+      yaw: -0.940528
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.571576
+      y: 3.260137
+      yaw: -0.696633
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.661695
+      y: 3.184748
+      yaw: -0.461187
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.76991
+      y: 3.130973
+      yaw: -0.271174
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.891314
+      y: 3.09722
+      yaw: -0.139234
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.022875
+      y: 3.078783
+      yaw: -0.065741
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.162707
+      y: 3.069577
+      yaw: -0.04421
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.308664
+      y: 3.06312
+      yaw: -0.066592
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.457981
+      y: 3.053162
+      yaw: -0.127432
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.606499
+      y: 3.034133
+      yaw: -0.224956
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.74916
+      y: 3.001488
+      yaw: -0.357643
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.880549
+      y: 2.952386
+      yaw: -0.535566
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.994509
+      y: 2.88476
+      yaw: -1.404358
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 2.7985
+      yaw: -1.570796
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 2.695711
+      yaw: -1.570796
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 2.5808
+      yaw: -1.570796
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 2.459584
+      yaw: -1.602516
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.005165
+      y: 2.338723
+      yaw: -1.478994
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.015536
+      y: 2.22607
+      yaw: -1.530511
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.019357
+      y: 2.131272
+      yaw: -1.530511
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.009
+      y: 1.8
+      yaw: -2.2
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.9
+      y: 1.64
+      yaw: -2.25
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.74
+      y: 1.47
+      yaw: -2.33
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.55
+      y: 1.29
+      yaw: -2.42
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+  ring_cw:
+    - x: 1.630549
+      y: 2.702386
+      yaw: 2.697522
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.49916
+      y: 2.751488
+      yaw: 2.851703
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.356499
+      y: 2.784133
+      yaw: 2.965957
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.207981
+      y: 2.803162
+      yaw: 3.044573
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.058664
+      y: 2.81312
+      yaw: 3.086057
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.912707
+      y: 2.819577
+      yaw: 3.086841
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.772875
+      y: 2.828783
+      yaw: 3.040087
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.641314
+      y: 2.84722
+      yaw: 2.938134
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.51991
+      y: 2.880973
+      yaw: 2.777408
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.411695
+      y: 2.934748
+      yaw: 2.564343
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.321576
+      y: 3.010137
+      yaw: 2.323247
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.252595
+      y: 3.104693
+      yaw: 2.095546
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.204493
+      y: 3.212393
+      yaw: 1.910459
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.174331
+      y: 3.32618
+      yaw: 1.768591
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.158455
+      y: 3.442106
+      yaw: 1.65731
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.154198
+      y: 3.558315
+      yaw: 1.561025
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.16072
+      y: 3.673899
+      yaw: 1.462285
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.179211
+      y: 3.78792
+      yaw: 1.344177
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.212502
+      y: 3.898472
+      yaw: 1.191757
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.264214
+      y: 4.001335
+      yaw: 0.991234
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.337104
+      y: 4.088837
+      yaw: 0.741945
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.431544
+      y: 4.15472
+      yaw: 0.48788
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.544701
+      y: 4.199002
+      yaw: 0.285511
+      pause: 1.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.671802
+      y: 4.225243
+      yaw: 0.148149
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.808526
+      y: 4.238376
+      yaw: 0.064791
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.950508
+      y: 4.243326
+      yaw: 0.020047
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.094469
+      y: 4.244109
+      yaw: -0.000111
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.239002
+      y: 4.243294
+      yaw: -0.007196
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.383914
+      y: 4.242026
+      yaw: -0.010377
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.529527
+      y: 4.242026
+      yaw: -0.015224
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.676201
+      y: 4.242026
+      yaw: -0.022295
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.823803
+      y: 4.242026
+      yaw: -0.028731
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.971932
+      y: 4.242026
+      yaw: -0.030358
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.120074
+      y: 4.242026
+      yaw: -0.024538
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.267702
+      y: 4.242026
+      yaw: -0.012606
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.414361
+      y: 4.242026
+      yaw: 0.001507
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.559634
+      y: 4.242026
+      yaw: 0.012883
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.703177
+      y: 4.242026
+      yaw: 0.01572
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.844665
+      y: 4.232026
+      yaw: 0.003377
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.983858
+      y: 4.225679
+      yaw: -0.031362
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.120388
+      y: 4.218089
+      yaw: -0.095037
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.253706
+      y: 4.199956
+      yaw: -0.191506
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.381542
+      y: 4.167456
+      yaw: -0.321709
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.498588
+      y: 4.11834
+      yaw: -0.481439
+      pause: 1.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.599427
+      y: 4.053624
+      yaw: -0.660533
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.680671
+      y: 3.976869
+      yaw: -0.848016
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.742804
+      y: 3.891065
+      yaw: -1.028074
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.788142
+      y: 3.798682
+      yaw: -1.184895
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.819606
+      y: 3.702024
+      yaw: -1.312211
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.839881
+      y: 3.603077
+      yaw: -1.413726
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.85105
+      y: 3.503482
+      yaw: -1.499214
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.854116
+      y: 3.404554
+      yaw: -1.58206
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.84884
+      y: 3.307286
+      yaw: -1.676112
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.833822
+      y: 3.212571
+      yaw: -1.792162
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.806984
+      y: 3.121304
+      yaw: -1.942481
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.764604
+      y: 3.034999
+      yaw: -2.137934
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.701818
+      y: 2.956192
+      yaw: -2.36406
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.61532
+      y: 2.888045
+      yaw: -2.582063
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.506367
+      y: 2.833782
+      yaw: -2.765903
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.378929
+      y: 2.794807
+      yaw: -2.906132
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.238222
+      y: 2.769451
+      yaw: -3.005461
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 3.088745
+      y: 2.755058
+      yaw: -3.071116
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.935193
+      y: 2.748059
+      yaw: -3.107177
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.781967
+      y: 2.744496
+      yaw: -3.115181
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.632938
+      y: 2.740074
+      yaw: -3.092786
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.492525
+      y: 2.730358
+      yaw: -3.03417
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.364173
+      y: 2.711091
+      yaw: -2.924615
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.252164
+      y: 2.677371
+      yaw: -2.738156
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.161692
+      y: 2.624662
+      yaw: -2.465523
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.095288
+      y: 2.551528
+      yaw: -2.16914
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.05056
+      y: 2.461642
+      yaw: -1.935757
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.022421
+      y: 2.360815
+      yaw: -1.781494
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.006126
+      y: 2.253882
+      yaw: -1.680842
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.998536
+      y: 2.144645
+      yaw: -1.613849
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.996801
+      y: 2.037422
+      yaw: -1.569474
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.998809
+      y: 1.938184
+      yaw: -1.535538
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.003216
+      y: 1.855556
+      yaw: -1.496946
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 2.00898
+      y: 1.80071
+      yaw: -1.406075
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.9
+      y: 1.64
+      yaw: -2.25
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.74
+      y: 1.47
+      yaw: -2.33
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.55
+      y: 1.29
+      yaw: -2.42
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+  return_to_p_rpp:
+    - x: 1.55
+      y: 1.29
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.395
+      y: 1.1539
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.24
+      y: 1.0178
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 1.085
+      y: 0.8817
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.93
+      y: 0.7456
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.775
+      y: 0.6095
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.62
+      y: 0.4734
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.465
+      y: 0.3373
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.31
+      y: 0.2012
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.155
+      y: 0.0651
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.35
+    - x: 0.0
+      y: -0.071
+      yaw: -2.42103
+      pause: 0.0
+      motion: forward
+      pass_radius: 0.25
+ring_cw:
+  - x: 1.630549
+    y: 2.702386
+    yaw: 2.697522
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.49916
+    y: 2.751488
+    yaw: 2.851703
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.356499
+    y: 2.784133
+    yaw: 2.965957
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.207981
+    y: 2.803162
+    yaw: 3.044573
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.058664
+    y: 2.81312
+    yaw: 3.086057
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.912707
+    y: 2.819577
+    yaw: 3.086841
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.772875
+    y: 2.828783
+    yaw: 3.040087
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.641314
+    y: 2.84722
+    yaw: 2.938134
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.51991
+    y: 2.880973
+    yaw: 2.777408
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.411695
+    y: 2.934748
+    yaw: 2.564343
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.321576
+    y: 3.010137
+    yaw: 2.323247
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.252595
+    y: 3.104693
+    yaw: 2.095546
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.204493
+    y: 3.212393
+    yaw: 1.910459
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.174331
+    y: 3.32618
+    yaw: 1.768591
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.158455
+    y: 3.442106
+    yaw: 1.65731
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.154198
+    y: 3.558315
+    yaw: 1.561025
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.16072
+    y: 3.673899
+    yaw: 1.462285
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.179211
+    y: 3.78792
+    yaw: 1.344177
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.212502
+    y: 3.898472
+    yaw: 1.191757
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.264214
+    y: 4.001335
+    yaw: 0.991234
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.337104
+    y: 4.088837
+    yaw: 0.741945
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.431544
+    y: 4.15472
+    yaw: 0.48788
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.544701
+    y: 4.199002
+    yaw: 0.285511
+    pause: 1.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.671802
+    y: 4.225243
+    yaw: 0.148149
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.808526
+    y: 4.238376
+    yaw: 0.064791
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.950508
+    y: 4.243326
+    yaw: 0.020047
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.094469
+    y: 4.244109
+    yaw: -0.000111
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.239002
+    y: 4.243294
+    yaw: -0.007196
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.383914
+    y: 4.242026
+    yaw: -0.010377
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.529527
+    y: 4.242026
+    yaw: -0.015224
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.676201
+    y: 4.242026
+    yaw: -0.022295
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.823803
+    y: 4.242026
+    yaw: -0.028731
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.971932
+    y: 4.242026
+    yaw: -0.030358
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.120074
+    y: 4.242026
+    yaw: -0.024538
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.267702
+    y: 4.242026
+    yaw: -0.012606
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.414361
+    y: 4.242026
+    yaw: 0.001507
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.559634
+    y: 4.242026
+    yaw: 0.012883
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.703177
+    y: 4.242026
+    yaw: 0.01572
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.844665
+    y: 4.232026
+    yaw: 0.003377
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.983858
+    y: 4.225679
+    yaw: -0.031362
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.120388
+    y: 4.218089
+    yaw: -0.095037
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.253706
+    y: 4.199956
+    yaw: -0.191506
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.381542
+    y: 4.167456
+    yaw: -0.321709
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.498588
+    y: 4.11834
+    yaw: -0.481439
+    pause: 1.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.599427
+    y: 4.053624
+    yaw: -0.660533
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.680671
+    y: 3.976869
+    yaw: -0.848016
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.742804
+    y: 3.891065
+    yaw: -1.028074
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.788142
+    y: 3.798682
+    yaw: -1.184895
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.819606
+    y: 3.702024
+    yaw: -1.312211
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.839881
+    y: 3.603077
+    yaw: -1.413726
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.85105
+    y: 3.503482
+    yaw: -1.499214
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.854116
+    y: 3.404554
+    yaw: -1.58206
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.84884
+    y: 3.307286
+    yaw: -1.676112
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.833822
+    y: 3.212571
+    yaw: -1.792162
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.806984
+    y: 3.121304
+    yaw: -1.942481
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.764604
+    y: 3.034999
+    yaw: -2.137934
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.701818
+    y: 2.956192
+    yaw: -2.36406
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.61532
+    y: 2.888045
+    yaw: -2.582063
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.506367
+    y: 2.833782
+    yaw: -2.765903
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.378929
+    y: 2.794807
+    yaw: -2.906132
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.238222
+    y: 2.769451
+    yaw: -3.005461
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.088745
+    y: 2.755058
+    yaw: -3.071116
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.935193
+    y: 2.748059
+    yaw: -3.107177
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.781967
+    y: 2.744496
+    yaw: -3.115181
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.632938
+    y: 2.740074
+    yaw: -3.092786
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.492525
+    y: 2.730358
+    yaw: -3.03417
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.364173
+    y: 2.711091
+    yaw: -2.924615
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.252164
+    y: 2.677371
+    yaw: -2.738156
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.161692
+    y: 2.624662
+    yaw: -2.465523
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.095288
+    y: 2.551528
+    yaw: -2.16914
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.05056
+    y: 2.461642
+    yaw: -1.935757
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.022421
+    y: 2.360815
+    yaw: -1.781494
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.006126
+    y: 2.253882
+    yaw: -1.680842
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.998536
+    y: 2.144645
+    yaw: -1.613849
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.996801
+    y: 2.037422
+    yaw: -1.569474
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.998809
+    y: 1.938184
+    yaw: -1.535538
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.003216
+    y: 1.855556
+    yaw: -1.496946
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.00898
+    y: 1.80071
+    yaw: -1.406075
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.9
+    y: 1.64
+    yaw: -2.25
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.74
+    y: 1.47
+    yaw: -2.33
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.55
+    y: 1.29
+    yaw: -2.42
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+ring_ccw:
+  - x: 2.009
+    y: 2.801528
+    yaw: 1.570796
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 2.874662
+    yaw: 1.570796
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 2.927371
+    yaw: 0.31026
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.114173
+    y: 2.961091
+    yaw: 0.148998
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.242525
+    y: 2.980358
+    yaw: 0.069086
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.382938
+    y: 2.990074
+    yaw: 0.029663
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.531967
+    y: 2.994496
+    yaw: 0.023249
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.685193
+    y: 2.998059
+    yaw: 0.045549
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.838745
+    y: 3.005058
+    yaw: 0.095993
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.988222
+    y: 3.019451
+    yaw: 0.178291
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.128929
+    y: 3.044807
+    yaw: 0.296801
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.256367
+    y: 3.083782
+    yaw: 0.462079
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.36532
+    y: 3.138045
+    yaw: 0.667285
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.451818
+    y: 3.206192
+    yaw: 0.898067
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.514604
+    y: 3.284999
+    yaw: 1.114335
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.556984
+    y: 3.371304
+    yaw: 1.284798
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.583822
+    y: 3.462571
+    yaw: 1.189222
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.59884
+    y: 3.5
+    yaw: 0.0
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.604116
+    y: 3.5
+    yaw: 2.292749
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.60105
+    y: 3.503482
+    yaw: -2.839386
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.589881
+    y: 3.5
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.569606
+    y: 3.5
+    yaw: 2.144578
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.538142
+    y: 3.548682
+    yaw: 2.027026
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.492804
+    y: 3.641065
+    yaw: 2.197532
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.430671
+    y: 3.726869
+    yaw: 2.384598
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.349427
+    y: 3.803624
+    yaw: 2.571021
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.248588
+    y: 3.86834
+    yaw: 2.744279
+    pause: 1.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.131542
+    y: 3.917456
+    yaw: 2.892635
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 3.003706
+    y: 3.949956
+    yaw: 3.006409
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.870388
+    y: 3.968089
+    yaw: 3.086058
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.733858
+    y: 3.975679
+    yaw: 3.096026
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.594665
+    y: 3.982026
+    yaw: 3.071033
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.453177
+    y: 3.992026
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.309634
+    y: 3.992026
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.164361
+    y: 3.992026
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.017702
+    y: 3.992026
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 3.992026
+    yaw: 3.117055
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 3.992026
+    yaw: 3.111235
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 3.992026
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.926201
+    y: 3.992026
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.779527
+    y: 3.992026
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.633914
+    y: 3.992026
+    yaw: 3.132843
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.489002
+    y: 3.993294
+    yaw: 3.135954
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.344469
+    y: 3.994109
+    yaw: -3.136154
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.200508
+    y: 3.993326
+    yaw: -3.106743
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.058526
+    y: 3.988376
+    yaw: -3.045832
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.921802
+    y: 3.975243
+    yaw: -2.937995
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.794701
+    y: 3.949002
+    yaw: -2.768581
+    pause: 1.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.681544
+    y: 3.90472
+    yaw: -2.532467
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.587104
+    y: 3.838837
+    yaw: -2.265343
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.514214
+    y: 3.751335
+    yaw: -2.036623
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.462502
+    y: 3.648472
+    yaw: -1.863293
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.429211
+    y: 3.53792
+    yaw: -2.024501
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.41072
+    y: 3.5
+    yaw: 3.141593
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.404198
+    y: 3.5
+    yaw: 0.0
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.408455
+    y: 3.5
+    yaw: 0.0
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.424331
+    y: 3.5
+    yaw: -0.894818
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.454493
+    y: 3.462393
+    yaw: -1.150749
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.502595
+    y: 3.354693
+    yaw: -0.940528
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.571576
+    y: 3.260137
+    yaw: -0.696633
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.661695
+    y: 3.184748
+    yaw: -0.461187
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.76991
+    y: 3.130973
+    yaw: -0.271174
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 0.891314
+    y: 3.09722
+    yaw: -0.139234
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.022875
+    y: 3.078783
+    yaw: -0.065741
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.162707
+    y: 3.069577
+    yaw: -0.04421
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.308664
+    y: 3.06312
+    yaw: -0.066592
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.457981
+    y: 3.053162
+    yaw: -0.127432
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.606499
+    y: 3.034133
+    yaw: -0.224956
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.74916
+    y: 3.001488
+    yaw: -0.357643
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.880549
+    y: 2.952386
+    yaw: -0.535566
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.994509
+    y: 2.88476
+    yaw: -1.404358
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 2.7985
+    yaw: -1.570796
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 2.695711
+    yaw: -1.570796
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 2.5808
+    yaw: -1.570796
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 2.459584
+    yaw: -1.602516
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.005165
+    y: 2.338723
+    yaw: -1.478994
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.015536
+    y: 2.22607
+    yaw: -1.530511
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.019357
+    y: 2.131272
+    yaw: -1.530511
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 2.009
+    y: 1.8
+    yaw: -2.2
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.9
+    y: 1.64
+    yaw: -2.25
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.74
+    y: 1.47
+    yaw: -2.33
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35
+  - x: 1.55
+    y: 1.29
+    yaw: -2.42
+    pause: 0.0
+    motion: forward
+    pass_radius: 0.35

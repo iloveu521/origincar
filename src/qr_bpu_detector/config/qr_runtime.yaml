@@ -1,0 +1,27 @@
+qr_bpu_detector:
+  ros__parameters:
+    score_threshold: 0.15
+    nms_threshold: 0.50
+    nms_top_k: 100
+    publish_debug_image: false
+    log_fps: true
+    fps_log_interval_sec: 1.0
+    enable_center_retry: true
+    center_retry_interval_frames: 5
+    center_crop_ratio: 0.70
+
+qr_roi_decoder:
+  ros__parameters:
+    min_confidence: 0.15
+    dynamic_padding_ratio: 0.15
+    target_qr_pixels: 280.0
+    max_upscale: 8.0
+    fallback_frame_threshold: 10
+    fallback_interval_frames: 10
+    fallback_center_ratio: 0.75
+    fallback_upscale: 1.5
+    fallback_max_pixels: 1000000
+    max_roi_candidates: 3
+    sync_queue_size: 10
+    scan_full_image_on_roi_failure: true
+    publish_state: false

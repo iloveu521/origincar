@@ -1,0 +1,33 @@
+slam_toolbox:
+  ros__parameters:
+    # Frames: EKF publishes odom_combined -> base_footprint; static TF publishes base_link -> laser.
+    odom_frame: odom_combined
+    map_frame: map
+    base_frame: base_footprint
+    scan_topic: /scan
+    use_sim_time: false
+
+    mode: mapping
+
+    # 5m x 5m competition field defaults
+    resolution: 0.02
+    max_laser_range: 6.0
+    minimum_travel_distance: 0.1
+    minimum_travel_heading: 0.2
+
+    # Lower CPU/memory pressure on RDK X5 and avoid scan/TF queue buildup.
+    # LSN10 is about 10 Hz; processing every 2nd scan is enough for mapping.
+    throttle_scans: 2
+    minimum_time_interval: 0.2
+    transform_timeout: 0.8
+    tf_buffer_duration: 60.0
+    transform_publish_period: 0.05
+    map_update_interval: 0.1
+    solver_plugin: solver_plugins::CeresSolver
+
+    # Match LaserScan capability; otherwise slam_toolbox warns about 0.0 < lidar min range.
+    min_laser_range: 0.2
+
+    do_loop_closing: true
+    loop_search_maximum_distance: 3.0
+    loop_match_minimum_response_fine: 0.1

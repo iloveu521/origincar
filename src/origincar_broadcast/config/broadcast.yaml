@@ -1,0 +1,38 @@
+broadcast_manager:
+  ros__parameters:
+    source_topics:
+      - /announcement
+      - /image_description
+      - /image_ai
+    source_names:
+      - announcement
+      - image_description
+      - image_ai
+    source_priorities:
+      - 80
+      - 60
+      - 60
+    source_cooldowns_sec:
+      - 1.0
+      - 8.0
+      - 8.0
+    source_prefixes:
+      - ""
+      - ""
+      - ""
+    queue_max_size: 8
+    duplicate_window_sec: 6.0
+    qos_depth: 10
+
+    speech_enabled: true
+    log_when_speech_disabled: true
+    i2c_bus: 5
+    i2c_addr: 48
+    reader: XiaoPing
+    volume: 10
+    speed: 5
+    intonation: 5
+    style: Continue
+    language: Chinese
+    encoding: GB2312
+    speak_timeout_sec: 20.0

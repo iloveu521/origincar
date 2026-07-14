@@ -1,0 +1,5 @@
+{
+	"model_file": "config/race_obstacle_detection_8.6.bin",
+	"class_num": 3,
+	"cls_names_list": "config/obstacles.list"
+}

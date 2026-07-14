@@ -1,0 +1,419 @@
+# OriginCar competition field semantic map.
+#
+# This file describes game rules and ground-marked areas. Do not merge these
+# polygons into the AMCL occupancy map: LiDAR cannot observe A/B/C color zones,
+# B-channel paint, C-ring paint, or forbidden floor markings.
+#
+# Coordinate convention:
+#   - All runtime coordinates should be expressed in map frame.
+#   - field frame is kept as a measurement aid: origin at the official 5m x 5m
+#     field bottom-left corner, x right, y up.
+  #   - Current conversion is derived from race_modify.pgm after LiDAR/map
+  #     alignment. The black field border centerline in the map is used as
+  #     the 5m x 5m field boundary:
+  #       map_x = -0.541 + field_x * 1.02
+  #       map_y = -0.273 + field_y * 1.01
+
+schema_version: 1
+
+frames:
+  runtime_frame: map
+  measurement_frame: field
+  field_to_map:
+    x_offset_m: -0.541
+    y_offset_m: -0.273
+    x_scale_m_per_field_m: 1.02
+    y_scale_m_per_field_m: 1.01
+    yaw_offset_rad: 0.0
+    verified: true
+    calibration_method: race_modify_pgm_black_border_centerline
+    calibration_points:
+      - name: field_bottom_left
+        field: [0.00, 0.00]
+        map: [-0.541, -0.273]
+      - name: field_bottom_right
+        field: [5.00, 0.00]
+        map: [4.559, -0.273]
+      - name: field_top_right
+        field: [5.00, 5.00]
+        map: [4.559, 4.777]
+      - name: field_top_left
+        field: [0.00, 5.00]
+        map: [-0.541, 4.777]
+    calibration_point_template:
+      # Fill calibration_points with at least two RViz-measured map points.
+      # Three or more points are preferred because the script averages click
+      # noise instead of trusting a single edge measurement.
+      - name: p_center
+        field: [0.53, 0.20]
+        map: [null, null]
+      - name: b_entry_a_side
+        field: [2.50, 2.00]
+        map: [null, null]
+      - name: b_entry_c_side
+        field: [2.50, 2.92]
+        map: [null, null]
+      - name: qr_scan_recommended
+        field: [4.084, 1.295]
+        map: [null, null]
+
+field:
+  size_m:
+    width: 5.0
+    height: 5.0
+  boundary:
+    description: Official 5m x 5m field boundary in field frame.
+    polygon_field:
+      - [0.0, 0.0]
+      - [5.0, 0.0]
+      - [5.0, 5.0]
+      - [0.0, 5.0]
+
+vehicle:
+  footprint_m:
+    # Fill with measured chassis footprint if different from Nav2 params.
+    front: 0.23
+    rear: 0.046
+    left: 0.0945
+    right: 0.0945
+  semantic_safety_margin_m: 0.15
+  corridor_center_tolerance_m: 0.12
+
+points:
+  # Field measurements below intentionally stay in field coordinates only.
+  # Runtime map coordinates must be generated later after field_to_map is
+  # verified on the real map; polygon_map remains empty until then.
+
+  parking_p:
+    description: Start and final parking rectangle P. Left edge is 0.28 m from the field left edge, bottom edge touches the field bottom edge, size is 0.50 m x 0.40 m.
+    pose_field: {x: 0.53, y: 0.20, yaw: 0.0}
+    rectangle_field:
+      x_min: 0.28
+      x_max: 0.78
+      y_min: 0.00
+      y_max: 0.40
+    polygon_field:
+      - [0.28, 0.00]
+      - [0.78, 0.00]
+      - [0.78, 0.40]
+      - [0.28, 0.40]
+    pose_map: null
+    verified: true
+
+  qr_rectangle:
+    description: QR board rectangle. The navigation scan pose is placed on the lower-left to upper-right diagonal extension, outside the rectangle.
+    rectangle_field:
+      x_min: 4.48
+      x_max: 5.00
+      y_min: 1.60
+      y_max: 2.00
+    polygon_field:
+      - [4.48, 1.60]
+      - [5.00, 1.60]
+      - [5.00, 2.00]
+      - [4.48, 2.00]
+    center_field: {x: 4.74, y: 1.80}
+    diagonal_field:
+      from: [4.48, 1.60]
+      to: [5.00, 2.00]
+      unit_vector_to_upper_right: [0.793, 0.610]
+    min_scan_pose_field:
+      # 0.10 m outside the rectangle along the diagonal extension.
+      pose: {x: 4.401, y: 1.539, yaw: 0.66}
+      offset_from_rectangle_m: 0.10
+    recommended_scan_pose_field:
+      # Start farther back for camera field-of-view tests, then adjust on car.
+      pose: {x: 4.084, y: 1.295, yaw: 0.66}
+      offset_from_rectangle_m: 0.50
+    pose_map: null
+    verified: true
+
+  b_entry_a_side:
+    description: Center of the legal B corridor at the A/B boundary.
+    pose_field: {x: 2.50, y: 2.00, yaw: 1.57}
+    pose_map: null
+    verified: true
+
+  b_entry_c_side:
+    description: Center of the legal B corridor at the B/C boundary.
+    pose_field: {x: 2.50, y: 2.92, yaw: 1.57}
+    pose_map: null
+    verified: true
+
+  c_upper_left_sign_capture:
+    description: Approximate capture pose for a human stand on the left side of the upper channel; keep about 0.10 m from the inner corner so Ackermann turns are not blocked.
+    pose_field: {x: 1.10, y: 4.34, yaw: 0.0}
+    related_corner_field: [1.00, 4.08]
+    clearance_from_corner_m: 0.10
+    pose_map: null
+    verified: false
+
+  c_upper_right_sign_capture:
+    description: Approximate capture pose for a human stand on the right side of the upper channel; keep about 0.10 m from the inner corner so Ackermann turns are not blocked.
+    pose_field: {x: 3.90, y: 4.34, yaw: 3.14}
+    related_corner_field: [4.00, 4.08]
+    clearance_from_corner_m: 0.10
+    pose_map: null
+    verified: false
+
+zones:
+  # Field semantic blocks are measured from the original 5m x 5m competition
+  # field. They are not mapped into AMCL coordinates in this file.
+  area_a:
+    description: A-zone is the full field width and the bottom 2.00 m.
+    rectangle_field: {x_min: 0.00, x_max: 5.00, y_min: 0.00, y_max: 2.00}
+    polygon_field:
+      - [0.00, 0.00]
+      - [5.00, 0.00]
+      - [5.00, 2.00]
+      - [0.00, 2.00]
+    polygon_map: []
+    verified: true
+
+  area_b:
+    description: B-zone spans the full field width from y=2.00 m to y=2.92 m. Only the yellow corridor x=[2.00, 3.00] is legal.
+    rectangle_field: {x_min: 0.00, x_max: 5.00, y_min: 2.00, y_max: 2.92}
+    polygon_field:
+      - [0.00, 2.00]
+      - [5.00, 2.00]
+      - [5.00, 2.92]
+      - [0.00, 2.92]
+    polygon_map: []
+    verified: true
+
+  area_c:
+    description: C-zone starts above the B corridor. Legal travel is only on the yellow ring corridor; all other C-zone floor is forbidden.
+    rectangle_field: {x_min: 0.00, x_max: 5.00, y_min: 2.92, y_max: 5.00}
+    polygon_field:
+      - [0.00, 2.92]
+      - [5.00, 2.92]
+      - [5.00, 5.00]
+      - [0.00, 5.00]
+    polygon_map: []
+    verified: true
+
+  qr_scan_zone:
+    description: QR scan zone is derived from the QR rectangle and its diagonal scan poses; TaskMaster may transition after stable QR decoding here.
+    rectangle_field:
+      x_min: 4.08
+      x_max: 5.00
+      y_min: 1.29
+      y_max: 2.00
+    polygon_field:
+      - [4.08, 1.29]
+      - [5.00, 1.29]
+      - [5.00, 2.00]
+      - [4.08, 2.00]
+    diagonal_min_pose_field: [4.401, 1.539]
+    diagonal_recommended_pose_field: [4.084, 1.295]
+    polygon_map: []
+    verified: true
+
+  b_legal_corridor:
+    description: Full legal yellow B corridor, x=[2.00, 3.00], y=[2.00, 2.92].
+    rectangle_field: {x_min: 2.00, x_max: 3.00, y_min: 2.00, y_max: 2.92}
+    polygon_field:
+      - [2.00, 2.00]
+      - [3.00, 2.00]
+      - [3.00, 2.92]
+      - [2.00, 2.92]
+    centerline_field:
+      - [2.50, 2.00]
+      - [2.50, 2.92]
+    nominal_width_m: 1.00
+    polygon_map: []
+    verified: true
+
+  c_ring_corridor:
+    description: Yellow C-ring corridor. It is represented as an outer rectangle minus the central green forbidden rectangle.
+    outer_rectangle_field: {x_min: 0.50, x_max: 4.50, y_min: 2.92, y_max: 4.60}
+    inner_forbidden_rectangle_field: {x_min: 1.00, x_max: 4.00, y_min: 3.43, y_max: 4.08}
+    legal_segments_field:
+      bottom:
+        polygon:
+          - [0.50, 2.92]
+          - [4.50, 2.92]
+          - [4.50, 3.43]
+          - [0.50, 3.43]
+      top:
+        polygon:
+          - [0.50, 4.08]
+          - [4.50, 4.08]
+          - [4.50, 4.60]
+          - [0.50, 4.60]
+      left:
+        polygon:
+          - [0.50, 3.43]
+          - [1.00, 3.43]
+          - [1.00, 4.08]
+          - [0.50, 4.08]
+      right:
+        polygon:
+          - [4.00, 3.43]
+          - [4.50, 3.43]
+          - [4.50, 4.08]
+          - [4.00, 4.08]
+    centerline_cw_field:
+      - [2.50, 2.92]
+      - [4.25, 3.18]
+      - [4.25, 3.75]
+      - [3.90, 4.34]
+      - [1.10, 4.34]
+      - [0.75, 3.75]
+      - [0.75, 3.18]
+      - [2.50, 2.92]
+    centerline_ccw_field:
+      - [2.50, 2.92]
+      - [0.75, 3.18]
+      - [0.75, 3.75]
+      - [1.10, 4.34]
+      - [3.90, 4.34]
+      - [4.25, 3.75]
+      - [4.25, 3.18]
+      - [2.50, 2.92]
+    polygon_map: []
+    verified: true
+
+forbidden_zones:
+  # These areas are semantic game constraints. They should be enforced by
+  # task-level checks, path generation, costmap filters, or a future semantic
+  # layer, not by adding fake walls to the AMCL occupancy map.
+  - name: outside_field
+    description: Outside the official field boundary.
+    polygon_field: []
+    derived_from:
+      outside: field.boundary
+    polygon_map: []
+    hard_forbidden: true
+    verified: true
+
+  - name: b_left_forbidden
+    description: Left B-zone forbidden strip, outside the legal yellow corridor.
+    polygon_field:
+      - [0.00, 2.00]
+      - [2.00, 2.00]
+      - [2.00, 2.92]
+      - [0.00, 2.92]
+    polygon_map: []
+    hard_forbidden: true
+    verified: true
+
+  - name: b_right_forbidden
+    description: Right B-zone forbidden strip, outside the legal yellow corridor.
+    polygon_field:
+      - [3.00, 2.00]
+      - [5.00, 2.00]
+      - [5.00, 2.92]
+      - [3.00, 2.92]
+    polygon_map: []
+    hard_forbidden: true
+    verified: true
+
+  - name: c_center_green_forbidden
+    description: Central green forbidden rectangle inside the C-ring.
+    polygon_field:
+      - [1.00, 3.43]
+      - [4.00, 3.43]
+      - [4.00, 4.08]
+      - [1.00, 4.08]
+    polygon_map: []
+    hard_forbidden: true
+    verified: true
+
+  - name: c_non_ring_forbidden
+    description: All C-zone floor that is not part of the yellow C-ring corridor, including green areas outside the central rectangle.
+    derived_from:
+      area: area_c
+      subtract: c_ring_corridor
+    polygon_field: []
+    polygon_map: []
+    hard_forbidden: true
+    verified: true
+
+corridors:
+  p_to_qr:
+    description: A-zone route from P center toward the QR diagonal scan pose; local obstacle avoidance is allowed inside area_a.
+    allowed_zones: [area_a, qr_scan_zone]
+    centerline_field:
+      - [0.53, 0.20]
+      - [4.084, 1.295]
+    centerline_map: []
+    max_lateral_deviation_m: null
+    verified: true
+
+  qr_to_b_entry:
+    description: Route from QR scan zone to the B corridor entrance.
+    allowed_zones: [area_a, qr_scan_zone]
+    centerline_field:
+      - [4.084, 1.295]
+      - [2.50, 2.00]
+    centerline_map: []
+    max_lateral_deviation_m: null
+    verified: true
+
+  b_crossing:
+    description: Strict B-zone crossing corridor; do not allow local planning to leave this strip.
+    allowed_zones: [b_legal_corridor]
+    centerline_field:
+      - [2.50, 2.00]
+      - [2.50, 2.92]
+    centerline_map: []
+    max_lateral_deviation_m: 0.35
+    verified: true
+
+  c_ring:
+    description: Strict C-zone ring corridor; direction is selected from QR result.
+    allowed_zones: [c_ring_corridor]
+    centerline_field_ref: zones.c_ring_corridor.centerline_cw_field or zones.c_ring_corridor.centerline_ccw_field
+    centerline_map: []
+    max_lateral_deviation_m: 0.20
+    verified: true
+
+  return_to_p:
+    description: Return through the B corridor, then A-zone to the P rectangle center.
+    allowed_zones: [b_legal_corridor, area_a]
+    centerline_field:
+      - [2.50, 2.92]
+      - [2.50, 2.00]
+      - [0.53, 0.20]
+    centerline_map: []
+    max_lateral_deviation_m: null
+    verified: true
+
+rules:
+  nav_to_qr:
+    allowed_zones: [area_a, qr_scan_zone]
+    forbidden_zones: [outside_field, b_left_forbidden, b_right_forbidden, c_center_green_forbidden, c_non_ring_forbidden]
+    may_transition_on_qr_before_goal: true
+    qr_transition_requires_zone: qr_scan_zone
+    qr_stability_required_frames: 3
+    qr_scan_pose_policy:
+      use_diagonal_extension: true
+      min_offset_from_qr_rectangle_m: 0.10
+      recommended_offset_from_qr_rectangle_m: 0.50
+
+  cross_b:
+    allowed_zones: [b_legal_corridor]
+    forbidden_zones: [outside_field, b_left_forbidden, b_right_forbidden, c_center_green_forbidden, c_non_ring_forbidden]
+    preferred_controller: path_tracking
+    obstacle_avoidance_scope: within_corridor
+
+  ring_nav:
+    allowed_zones: [c_ring_corridor]
+    forbidden_zones: [outside_field, b_left_forbidden, b_right_forbidden, c_center_green_forbidden, c_non_ring_forbidden]
+    preferred_controller: path_tracking
+    obstacle_avoidance_scope: within_corridor
+    human_sign_capture_policy:
+      stand_location: upper_channel_left_and_right_sides
+      min_clearance_from_turn_corner_m: 0.10
+
+  return_to_p:
+    allowed_zones: [b_legal_corridor, area_a]
+    forbidden_zones: [outside_field, b_left_forbidden, b_right_forbidden, c_center_green_forbidden, c_non_ring_forbidden]
+    preferred_controller: path_tracking
+
+data_to_measure:
+  - Convert field polygons to map-frame polygons after field_to_map is verified.
+  - Verify QR recommended scan pose with the real camera field of view.
+  - Verify human stand capture poses do not block Ackermann turning.
+  - Confirm safe lateral deviation for B corridor and C ring on the real chassis.

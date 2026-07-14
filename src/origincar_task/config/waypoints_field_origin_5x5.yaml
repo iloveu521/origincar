@@ -1,0 +1,84 @@
+# Competition Waypoints
+# Coordinate system: map frame, origin (0,0) = bottom-left of 5m×5m field
+# Resolution: 0.02 m/pixel
+# Note: coordinates are approximate, must be verified against actual field
+
+# ===== Key Points =====
+waypoints:
+  point_P:
+    x: 0.5
+    y: 0.3
+    yaw: 0.0
+    description: "发车/停车点 P (Area A, bottom-left)"
+
+  qr_point:
+    x: 4.5
+    y: 1.7
+    yaw: 0.0
+    description: "QR 任务发布点 (Area A, top-right)"
+
+  zone_b_a_side:
+    x: 1.5
+    y: 2.0
+    yaw: -1.57
+    description: "B区入口 (A侧通道口)"
+
+  zone_b_c_side:
+    x: 1.5
+    y: 2.75
+    yaw: -1.57
+    description: "C区入口 (B侧通道口)"
+
+# ===== Zone C Ring Path: Counter-Clockwise (逆时针) =====
+ring_ccw:
+  # Entry (from B区)
+  - {x: 1.5, y: 2.75, pause: 0.0}
+  # Navigate into the ring
+  - {x: 1.5, y: 3.0, pause: 0.0}
+  - {x: 1.8, y: 3.1, pause: 0.0}
+  - {x: 2.0, y: 3.2, pause: 0.0}
+  - {x: 2.2, y: 3.3, pause: 0.0}
+  - {x: 2.4, y: 3.4, pause: 0.0}
+  # Sign marker 1 (图生文标记牌1)
+  - {x: 2.5, y: 3.5, pause: 1.0}
+  - {x: 2.8, y: 3.6, pause: 0.0}
+  - {x: 3.0, y: 3.7, pause: 0.0}
+  - {x: 3.2, y: 3.8, pause: 0.0}
+  - {x: 3.5, y: 3.9, pause: 0.0}
+  - {x: 3.7, y: 3.8, pause: 0.0}
+  # Sign marker 2 (图生文标记牌2)
+  - {x: 3.5, y: 4.0, pause: 1.0}
+  - {x: 3.2, y: 3.9, pause: 0.0}
+  - {x: 3.0, y: 3.8, pause: 0.0}
+  - {x: 2.8, y: 3.7, pause: 0.0}
+  - {x: 2.5, y: 3.5, pause: 0.0}
+  - {x: 2.3, y: 3.3, pause: 0.0}
+  - {x: 2.0, y: 3.1, pause: 0.0}
+  - {x: 1.8, y: 2.9, pause: 0.0}
+  # Exit (back to B区)
+  - {x: 1.5, y: 2.75, pause: 0.0}
+
+# ===== Zone C Ring Path: Clockwise (顺时针) =====
+ring_cw:
+  # Entry (from B区)
+  - {x: 1.5, y: 2.75, pause: 0.0}
+  # Navigate into the ring
+  - {x: 1.5, y: 3.0, pause: 0.0}
+  - {x: 2.0, y: 2.9, pause: 0.0}
+  - {x: 2.5, y: 2.8, pause: 0.0}
+  - {x: 3.0, y: 2.7, pause: 0.0}
+  - {x: 3.5, y: 2.6, pause: 0.0}
+  # Sign marker 2 (approaching from other direction)
+  - {x: 4.0, y: 3.0, pause: 0.0}
+  - {x: 3.8, y: 3.5, pause: 0.0}
+  - {x: 3.5, y: 4.0, pause: 1.0}
+  - {x: 3.2, y: 3.8, pause: 0.0}
+  - {x: 3.0, y: 3.7, pause: 0.0}
+  # Sign marker 1
+  - {x: 2.5, y: 3.5, pause: 1.0}
+  - {x: 2.2, y: 3.4, pause: 0.0}
+  - {x: 2.0, y: 3.3, pause: 0.0}
+  - {x: 1.8, y: 3.2, pause: 0.0}
+  - {x: 1.5, y: 3.0, pause: 0.0}
+  # Exit (back to B区)
+  - {x: 1.5, y: 2.75, pause: 0.0}

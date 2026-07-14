@@ -1,0 +1,38 @@
+car_pc_bridge:
+  ros__parameters:
+    image_topic: /image
+    image_msg_type: compressed
+    description_topic: /image_description
+    trigger_required: true
+    trigger_topic: /capture_trigger
+
+    # PC-side qwen_api_server.py endpoint.
+    pc_server_url: http://192.168.3.12:9999/predict
+    request_timeout_sec: 20.0
+
+    # Match the original script's upper send rate, but never allow
+    # concurrent in-flight requests.
+    min_send_period_sec: 0.3
+    retry_backoff_sec: 5.0
+
+    resize_width: 320
+    resize_height: 320
+    jpeg_quality: 70
+
+    result_json_key: description
+    publish_max_chars: 200
+    dedup_window_sec: 3.0
+    publish_response_result: true
+    stop_after_first_result: true
+    publish_state: true
+    state_topic: /image_description_state
+
+    enable_callback_receiver: true
+    callback_host: 0.0.0.0
+    callback_port: 8888
+    callback_path: /receive_result
+
+    # Leave empty to auto-detect the car's LAN IP by probing the PC.
+    car_ip: ''
+    ip_probe_host: 192.168.3.12
+    ip_probe_port: 9999

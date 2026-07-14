@@ -1,0 +1,49 @@
+task_master:
+  ros__parameters:
+    cruise_speed: 0.85
+    qr_scan_speed_gain: 0.85
+    turn_speed_gain: 0.50
+    turn_angular_gain: 1.50
+    capture_speed_gain: 0.60
+    capture_radius: 0.25
+    max_angular_z: 1.80
+    path_turn_gain: 1.40
+
+    cone_confidence_threshold: 0.35
+    cone_image_width: 640.0
+    obstacle_slow_distance: 0.45
+    obstacle_avoid_distance: 0.45
+    obstacle_backup_distance_threshold: 0.20
+    obstacle_backup_speed_gain: 0.70
+    obstacle_backup_distance: 0.40
+    obstacle_backup_timeout_sec: 1.50
+    rear_clearance_distance: 0.25
+    cone_detection_timeout_sec: 0.25
+    obstacle_clear_hold_sec: 0.40
+    avoid_proximity_max_angular_z: 1.10
+
+    control_frequency: 20.0
+    scan_timeout_sec: 0.30
+    lookahead_dist: 0.22
+    pass_radius: 0.35
+    reverse_pass_radius: 0.30
+    goal_tolerance: 0.35
+    reacquire_window: 20
+    enable_lookahead_progress: true
+    enable_obstacle_avoidance: true
+    obstacle_enable_from_waypoint: 0
+
+    front_angle_deg: 30.0
+    side_angle_deg: 90.0
+    min_obstacle_range: 0.05
+
+    startup_tf_required_frames: 5
+    startup_tf_check_timeout_sec: 10.0
+    startup_tf_max_age_sec: 0.30
+    custom_rpp_pose_hold_sec: 0.20
+
+    default_qr_direction: cw
+    qr_direction_topic: /qr_direction
+    cone_detection_topic: /racing_obstacle_detection
+    scan_topic: /scan
+    announcement_topic: /announcement
